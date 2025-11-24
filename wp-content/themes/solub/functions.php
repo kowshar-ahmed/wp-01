@@ -36,12 +36,13 @@ function solub_setup() {
 	 * See: https://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
 	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 825, 510, true );
+	
+	// set_post_thumbnail_size( 825, 510, true );
 
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
-		'primary' =&gt; __( 'Primary Menu',      'solub' ),
-		'social'  =&gt; __( 'Social Links Menu', 'solub' ),
+		'primary' => __( 'Primary Menu',      'solub' ),
+		'social'  => __( 'Social Links Menu', 'solub' ),
 	) );
 
 	/*
@@ -58,23 +59,45 @@ function solub_setup() {
 	 * See: https://codex.wordpress.org/Post_Formats
 	 */
 	add_theme_support( 'post-formats', array(
-		'aside', 'image', 'video', 'quote', 'link', 'gallery', 'status', 'audio', 'chat'
+	 'image', 'video', 'gallery', 'audio'
 	) );
 
-	$color_scheme  = solub_get_color_scheme();
-	$default_color = trim( $color_scheme[0], '#' );
-
-	// Setup the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'solub_custom_background_args', array(
-		'default-color'      =&gt; $default_color,
-		'default-attachment' =&gt; 'fixed',
-	) ) );
-
-	/*
-	 * This theme styles the visual editor to resemble the theme style,
-	 * specifically font, colors, icons, and column width.
-	 */
-	add_editor_style( array( 'css/editor-style.css', 'genericons/genericons.css', solub_fonts_url() ) );
 }
 endif; // solub_setup
 add_action( 'after_setup_theme', 'solub_setup' );
+
+
+
+
+/**
+ * Enqueue scripts and styles.
+ */
+function solub_theme_scripts() {
+    // css files 
+	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.css', array(), '5.2.3', 'all' );
+	wp_enqueue_style( 'swiper-bundle', get_template_directory_uri() . '/assets/css/swiper-bundle.css', array(), '8.2.2', 'all' );
+	wp_enqueue_style( 'magnific-popup', get_template_directory_uri() . '/assets/css/magnific-popup.css', array(), '1.0.0', 'all' );
+	wp_enqueue_style( 'font-awesome-pro', get_template_directory_uri() . '/assets/css/font-awesome-pro.css', array(), '5.2.3', 'all' );
+	wp_enqueue_style( 'solub-spacing', get_template_directory_uri() . '/assets/css/spacing', array(), '5.2.3', 'all' );
+	wp_enqueue_style( 'animate', get_template_directory_uri() . '/assets/css/animate.css', array(), '5.2.3', 'all' );
+	wp_enqueue_style( 'nice-select', get_template_directory_uri() . '/assets/css/nice-select.css', array(), '5.2.3', 'all' );
+	wp_enqueue_style( 'slick', get_template_directory_uri() . '/assets/css/slick.css', array(), '5.2.3', 'all' );
+	wp_enqueue_style( 'solub-main', get_template_directory_uri() . '/assets/css/main.css', array(), '5.2.3', 'all' );
+	wp_enqueue_style( 'style', get_stylesheet_uri() );
+
+    // js files
+	wp_enqueue_script( 'bootstrap-bundle', get_template_directory_uri() . '/assets/js/bootstrap-bundle.js', array( 'jquery' ), 1.1, true );
+	wp_enqueue_script( 'wow', get_template_directory_uri() . '/assets/js/wow.js', array( 'jquery' ), 1.1, true );
+	wp_enqueue_script( 'swiper-bundle', get_template_directory_uri() . '/assets/js/swiper-bundle.js', array( 'jquery' ), 1.1, true );
+	wp_enqueue_script( 'purecounter', get_template_directory_uri() . '/assets/js/purecounter.js', array( 'jquery' ), 1.1, true );
+	wp_enqueue_script( 'magnific-popup', get_template_directory_uri() . '/assets/js/magnific-popup.js', array( 'jquery' ), 1.1, true );
+	wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/slick.js', array( 'jquery' ), 1.1, true );
+	wp_enqueue_script( 'waypoints', get_template_directory_uri() . '/assets/js/waypoints.js', array( 'jquery' ), 1.1, true );
+	wp_enqueue_script( 'isotope-pkgd', get_template_directory_uri() . '/assets/js/isotope-pkgd.js', array( 'imagesloaded' ), 1.1, true );
+	wp_enqueue_script( 'solub-main', get_template_directory_uri() . '/assets/js/main.js', array( 'jquery' ), 1.1, true );
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	} 
+}
+add_action( 'wp_enqueue_scripts', 'solub_theme_scripts' );
