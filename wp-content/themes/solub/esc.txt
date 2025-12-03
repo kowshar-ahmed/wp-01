@@ -1,0 +1,7 @@
+<!-- escaping  -->
+
+<h2><a href="<?php echo esc_url('$header_button_url'); ?>"><?php echo esc_html__('Read More', 'solub'); ?></a></h2>
+
+<h2 class="services"><?php echo esc_html__('$header_time'); ?></h2>
+
+<input type="text" placeholder="<?php echo esc_attr__('Search....', 'solub'); ?>)">
