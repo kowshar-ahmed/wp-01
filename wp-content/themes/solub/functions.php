@@ -102,3 +102,4 @@ function solub_theme_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'solub_theme_scripts' );
 require_once('inc/solub-kirki.php');
+require_once('inc/template-function.php');

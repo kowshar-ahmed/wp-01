@@ -1,7 +1,9 @@
 <?php
-$header_time = get_theme_mod('header_text_control', __('Monday - Friday : 8:30 AM to 6:30 PM'));
-$header_button = get_theme_mod('header_button_control', __('+999 3265 464968'));
-$header_button_url = get_theme_mod('header_button_url_control', __('tel:01234567'));
+$header_top_switch = get_theme_mod('header_top_switch', true);
+
+$header_time = get_theme_mod('header_time', __('Monday - Friday : 8:30 AM to 6:30 PM', 'solub'));
+$header_button = get_theme_mod('header_button', __('+999 3265 464968', 'solub'));
+$header_button_url = get_theme_mod('header_button_url', __('tel:01234567', 'solub'));
 ?>
 
 
@@ -75,7 +77,7 @@ $header_button_url = get_theme_mod('header_button_url_control', __('tel:01234567
                 </div>
             </div>
             <div class="offcanvas__social">
-                <a class="icon facebook" href="#"><i class="fab fa-facebook-f"></i></a>
+                <a class="icon facebook" href=""><i class="fab fa-facebook-f"></i></a>
                 <a class="icon twitter" href="#"><i class="fab fa-twitter"></i></a>
                 <a class="icon youtube" href="#"><i class="fab fa-youtube"></i></a>
                 <a class="icon linkedin" href="#"><i class="fab fa-linkedin"></i></a>
@@ -88,43 +90,38 @@ $header_button_url = get_theme_mod('header_button_url_control', __('tel:01234567
 
 <!-- header area start -->
 <header class="tp-header-4-ptb">
-    <div class="tp-header-3-top d-none d-md-block">
-        <div class="container container-1320">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <div class="tp-header-2-date">
-                        <span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M8 3.8V8L10.8 9.4M15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8Z"
-                                    stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg> <?php echo esc_html('$header_time'); ?> </span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="tp-header-2-right">
-                        <div class="tp-header-2-social border-0">
-                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                    <path
-                                        d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z">
-                                    </path>
-                                </svg></a>
-                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+    <?php if ($header_top_switch) : ?>
+        <div class="tp-header-3-top d-none d-md-block">
+            <div class="container container-1320">
+                <div class="row align-items-center">
+                    <?php if ($header_time) : ?>
+                        <div class="col-md-6">
+                            <div class="tp-header-2-date">
+                                <span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M8 3.8V8L10.8 9.4M15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8Z"
+                                            stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg> <?php echo esc_html($header_time); ?> </span>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <div class="col-md-6">
+                        <div class="tp-header-2-right">
+                            <div class="tp-header-2-social border-0">
+                                <?php solub_header_social(); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
     <div class="tp-header-main-sticky tp-header-4-main p-relative">
         <div class="container container-1320">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="tp-header-logo">
-                    <a href="index.html">
-                        <img data-width="130" src="assets/img/logo/logo-black.png" alt="">
-                    </a>
+                    <?php solub_header_logo(); ?>
                 </div>
                 <div class="tp-header-box d-flex align-items-center justify-content-between">
                     <div class="tp-header-2-menu">
@@ -186,18 +183,18 @@ $header_button_url = get_theme_mod('header_button_url_control', __('tel:01234567
                                 </form>
                             </div>
                         </div>
-
-                        <div class="tp-header-2-main-right-btn d-none d-lg-block">
-                            <a href="<?php echo esc_url('$header_button_url'); ?>" class="tp-btn orange">
-                                <span><svg width="22" height="22" viewBox="0 0 22 22" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M12.111 1C12.111 1 14.5554 1.22222 17.6665 4.33332C20.7776 7.44442 20.9998 9.88886 20.9998 9.88886M12.3411 4.92811C12.3411 4.92811 13.4411 5.24238 15.091 6.89229C16.7409 8.5422 17.0552 9.64214 17.0552 9.64214M7.7941 9.69955C7.79398 9.69967 6.55095 10.9429 8.80499 13.197C11.0584 15.4503 12.3016 14.2087 12.3024 14.2079M7.7941 9.69955C8.81906 8.67458 9.08031 7.14487 8.42954 5.97878L7.70841 4.68665C6.72573 2.92584 4.25638 2.71789 2.70867 4.2656C1.77867 5.1956 1.05502 6.33489 1.00728 7.59432C0.926905 9.71447 1.46347 13.315 5.07521 16.9267C8.68695 20.5385 12.2875 21.0751 14.4076 20.9947C15.6671 20.9469 16.8064 20.2233 17.7364 19.2933C19.2841 17.7456 19.0761 15.2762 17.3153 14.2935L16.0232 13.5724C14.8571 12.9217 13.3274 13.1829 12.3024 14.2079M7.7941 9.69955C7.7941 9.69955 7.79409 9.69956 7.7941 9.69955ZM12.3024 14.2079C12.3024 14.2078 12.3024 14.2079 12.3024 14.2079Z"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                                    </svg></span><?php echo esc_html('$header_button'); ?>
-                            </a>
-                        </div>
-
+                        <?php if ($header_button) : ?>
+                            <div class="tp-header-2-main-right-btn d-none d-lg-block">
+                                <a href="<?php echo esc_url($header_button_url); ?>" class="tp-btn orange">
+                                    <span><svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12.111 1C12.111 1 14.5554 1.22222 17.6665 4.33332C20.7776 7.44442 20.9998 9.88886 20.9998 9.88886M12.3411 4.92811C12.3411 4.92811 13.4411 5.24238 15.091 6.89229C16.7409 8.5422 17.0552 9.64214 17.0552 9.64214M7.7941 9.69955C7.79398 9.69967 6.55095 10.9429 8.80499 13.197C11.0584 15.4503 12.3016 14.2087 12.3024 14.2079M7.7941 9.69955C8.81906 8.67458 9.08031 7.14487 8.42954 5.97878L7.70841 4.68665C6.72573 2.92584 4.25638 2.71789 2.70867 4.2656C1.77867 5.1956 1.05502 6.33489 1.00728 7.59432C0.926905 9.71447 1.46347 13.315 5.07521 16.9267C8.68695 20.5385 12.2875 21.0751 14.4076 20.9947C15.6671 20.9469 16.8064 20.2233 17.7364 19.2933C19.2841 17.7456 19.0761 15.2762 17.3153 14.2935L16.0232 13.5724C14.8571 12.9217 13.3274 13.1829 12.3024 14.2079M7.7941 9.69955C7.7941 9.69955 7.79409 9.69956 7.7941 9.69955ZM12.3024 14.2079C12.3024 14.2078 12.3024 14.2079 12.3024 14.2079Z"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                        </svg></span><?php echo esc_html($header_button); ?>
+                                </a>
+                            </div>
+                        <?php endif; ?>
                         <div class="tp-header-2-hamburger d-xl-none offcanvas-open-btn">
                             <button class="hamburger-btn">
                                 <span></span>
