@@ -3155,6 +3155,22 @@ div.demo img {
 /*----------------------------------------*/
 /*  6.1 Footer Style 1
 /*----------------------------------------*/
+.tp-footer-widget ul li {
+  list-style: none;
+}
+.tp-footer-widget ul li:not(:last-of-type) {
+  margin-bottom: 10px;
+}
+.tp-footer-widget ul li a {
+  position: relative;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(245, 245, 250, 0.65);
+}
+.tp-footer-widget ul li a:hover {
+  letter-spacing: 0.5px;
+  color: var(--tp-common-white);
+}
 .tp-footer-widget-border {
   padding-bottom: 45px;
   border-bottom: 1px solid rgba(230, 230, 230, 0.15);
