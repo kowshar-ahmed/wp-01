@@ -178,3 +178,57 @@ function header_footer_section(){
     );
 }
 header_footer_section();
+
+
+
+// footer social section 
+function footer_social_section()
+{
+    new \Kirki\Section(
+        'solub_footer_social',
+        [
+            'title'       => esc_html__('Footer Social', 'solub'),
+            'description' => esc_html__('Footer social information here you can find.', 'solub'),
+            'panel'       => 'solub_panel',
+            'priority'    => 160,
+        ]
+    );
+
+    new \Kirki\Field\Text(
+        [
+            'settings' => 'social_foo_fb',
+            'label'    => esc_html__('Facebook URL', 'solub'),
+            'section'  => 'solub_footer_social',
+            'default'  => esc_html__('#', 'solub'),
+            'priority' => 10,
+        ]
+    );
+    new \Kirki\Field\Text(
+        [
+            'settings' => 'social_foo_x',
+            'label'    => esc_html__('Twitter URL', 'solub'),
+            'section'  => 'solub_footer_social',
+            'default'  => esc_html__('#', 'solub'),
+            'priority' => 10,
+        ]
+    );
+    new \Kirki\Field\Text(
+        [
+            'settings' => 'social_foo_in',
+            'label'    => esc_html__('Instagram URL', 'solub'),
+            'section'  => 'solub_footer_social',
+            'default'  => esc_html__('#', 'solub'),
+            'priority' => 10,
+        ]
+    );
+    new \Kirki\Field\Text(
+        [
+            'settings' => 'social_foo_ln',
+            'label'    => esc_html__('Linkedin URL', 'solub'),
+            'section'  => 'solub_footer_social',
+            'default'  => esc_html__('#', 'solub'),
+            'priority' => 10,
+        ]
+    );
+}
+footer_social_section();

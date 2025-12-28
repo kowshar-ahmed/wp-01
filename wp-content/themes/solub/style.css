@@ -22,3 +22,10 @@ Use it to make something cool, have fun, and share what you've learned with othe
 .tp-footer-widget-border {
   padding-bottom: 0px;
 }
+
+.tp-postbox-meta span img {
+  width: 20px;
+  margin-right: 3px;
+  height: auto;
+  border-radius: 30px;
+}
