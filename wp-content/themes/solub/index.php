@@ -6,7 +6,7 @@
             <div class="col-lg-8">
                 <div class="tp-postbox-wrapper">
                     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                    <?php get_template_part('template-parts/content'); ?>
+                    <?php get_template_part('template-parts/content', get_post_format()); ?>
                         <?php endwhile; ?>
                     <?php endif; ?>
                     <div class="tp-pagination pt-30">
