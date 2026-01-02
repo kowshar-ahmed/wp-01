@@ -46,7 +46,7 @@ $post_format_url = function_exists('get_field') ? get_field('format_gallery') : 
             <?php the_excerpt(); ?>
         </div>
         <div class="tp-postbox-read-more">
-            <a class="tp-btn btn-text-flip" href="<?php the_permalink(); ?>"><span data-text="Read More"><?php echo esc_html__('Read More', 'solub'); ?></span></a>
+            <a class="tp-btn btn-text-flip" href="<?php the_permalink(); ?>"><span data-text="Read More"><?php echo esc_html__('Read More','solub'); ?></span></a>
         </div>
     </div>
 </article>
