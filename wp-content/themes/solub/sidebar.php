@@ -1,3 +1,3 @@
-<?php
+<?php 
 
-dynamic_sidebar('blog-sidebar');
+dynamic_sidebar( 'blog-sidebar' );
