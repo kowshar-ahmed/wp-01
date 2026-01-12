@@ -10,7 +10,7 @@
                             <?php get_template_part('template-parts/content', get_post_format()); ?> 
                             
                             <?php echo get_template_part('template-parts/biography'); ?>  
-                            
+                            <!-- Comments Section -->
                             <?php if ( comments_open() || get_comments_number() ) :
                                     comments_template();
                             endif; ?>

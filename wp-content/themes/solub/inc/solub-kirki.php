@@ -155,7 +155,33 @@ function header_logo_section(){
 header_logo_section();
 
 
-// header footewr section 
+// breadcrumb section 
+function breadcrumb_section(){
+    new \Kirki\Section(
+        'solub_breadcrumb',
+        [
+            'title'       => esc_html__('Breadcrumb', 'solub' ),
+            'description' => esc_html__('Breadcrumb information here you can find.', 'solub' ),
+            'panel'       => 'solub_panel',
+            'priority'    => 160,
+        ]
+    );
+
+    new \Kirki\Field\Image(
+        [
+            'settings'    => 'breadcrumb_img',
+            'label'       => esc_html__('Breadcrumb Background image', 'solub'),
+            'description' => esc_html__('Please upload your breadcrumb background image here.', 'solub'),
+            'section'     => 'solub_breadcrumb',
+        ]
+    ); 
+
+  
+}
+breadcrumb_section();
+
+
+// header footer section 
 function header_footer_section(){
     new \Kirki\Section(
         'solub_footer',

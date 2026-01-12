@@ -108,3 +108,19 @@ function solub_tags(){
         <?php
     }
 }
+
+// solub_pagination
+function solub_pagination() {
+    $pages = paginate_links( array(
+        'type'      => 'array',
+        'prev_text' => '<i class="fal fa-long-arrow-left"></i>',
+        'next_text' => '<i class="fal fa-long-arrow-right"></i>',
+    ) );
+    if ( $pages ) {
+        echo '<ul>';
+        foreach ( $pages as $page ) {
+            echo '<li>' . $page . '</li>';
+        }
+        echo '</ul>';
+    }
+}

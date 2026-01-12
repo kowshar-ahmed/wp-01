@@ -169,6 +169,7 @@ if ( ! function_exists( 'solub_setup' ) ) :
     require_once('inc/nav-walker.php');
     require_once('inc/solub-recent-post.php');
     require_once('inc/solub-cat-list.php');
+    require_once('inc/breadcrumb.php');
 
 
 /**
