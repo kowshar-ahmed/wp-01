@@ -74,6 +74,17 @@ if ( ! function_exists( 'solub_setup' ) ) :
      * Add a sidebar.
      */
     function solub_widgets_init() {
+
+        register_sidebar( array(
+            'name'          => __( 'Blog Sidebar', 'solub' ),
+            'id'            => 'blog-sidebar',
+            'description'   => __( 'This widgets will display in blog sidebar', 'solub' ),
+            'before_widget' => '<div id="%1$s" class="tp-sidebar-widget mb-45 %2$s">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h3 class="tp-sidebar-widget-title">',
+            'after_title'   => '</h3>',
+        ) );
+
         register_sidebar( array(
             'name'          => __( 'Footer Widget 01', 'solub' ),
             'id'            => 'footer-widget-1',
@@ -156,3 +167,31 @@ if ( ! function_exists( 'solub_setup' ) ) :
     }
     require_once('inc/template-function.php');
     require_once('inc/nav-walker.php');
+    require_once('inc/solub-recent-post.php');
+    require_once('inc/solub-cat-list.php');
+
+
+/**
+ * Generate custom search form
+ *
+ * @param string $form Form HTML.
+ * @return string Modified form HTML.
+ */
+function solub_search_form( $form ) {
+	$form = '<div class="tp-sidebar-widget-content">
+            <div class="tp-sidebar-search">
+                <form action="' . home_url( '/' ) . '">
+                <div class="tp-sidebar-search-input p-relative">
+                    <input name="s" type="text" value="' . get_search_query() . '" placeholder="' . __( 'Enter your keywords...' ) . '">
+                    <button class="tp-sidebar-search-btn" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M9.55005 18.1001C14.2721 18.1001 18.1001 14.2721 18.1001 9.55005C18.1001 4.82799 14.2721 1 9.55005 1C4.82799 1 1 4.82799 1 9.55005C1 14.2721 4.82799 18.1001 9.55005 18.1001Z" stroke="#1F2220" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18.9992 19L17.1992 17.2" stroke="#1F2220" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg></button>
+                </div>
+                </form>
+            </div>
+        </div>';
+
+	return $form;
+}
+add_filter( 'get_search_form', 'solub_search_form' );
