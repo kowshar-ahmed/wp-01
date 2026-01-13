@@ -110,6 +110,7 @@ class Plugin
 	public function register_widgets($widgets_manager)
 	{
 		// Its is now safe to include Widgets files
+		require_once(__DIR__ . '/widgets/hero.php');
 		require_once(__DIR__ . '/widgets/hello-world.php');
 		require_once(__DIR__ . '/widgets/inline-editing.php');
 
@@ -132,6 +133,18 @@ class Plugin
 		new Page_Settings();
 	}
 
+	// widget_category
+	public function solub_add_widget_categories($solub_add_cat_manager)
+	{
+		$solub_add_cat_manager->add_category(
+			'solub-category',
+			[
+				'title' => __('Solub Core', 'harry-core'),
+				'icon' => 'fa fa-plug',
+			]
+		);
+	}
+
 	/**
 	 *  Plugin class constructor
 	 *
@@ -142,6 +155,9 @@ class Plugin
 	 */
 	public function __construct()
 	{
+
+		// Register widget scripts
+		add_action('elementor/elements/categories_registered', [$this, 'solub_add_widget_categories']);
 
 		// Register widget scripts
 		add_action('elementor/frontend/after_register_scripts', [$this, 'widget_scripts']);
