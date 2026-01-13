@@ -29,8 +29,6 @@ function solub_breadcrumb()
     }
 
 
-    $title = get_the_title();
-
     $breadcrumb_img = get_theme_mod('breadcrumb_img');
     $breadcrumb_img_page = function_exists('get_field') ? get_field('breadcrumb_image') : '';
 
@@ -50,7 +48,7 @@ function solub_breadcrumb()
             <div class="row align-items-center">
                 <div class="col-sm-12">
                     <div class="tp-breadcrumb__content p-relative">
-                        <h3 class="tp-breadcrumb__title white"><?php echo esc_html($title); ?></h3>
+                        <h3 class="tp-breadcrumb__title white"><?php echo solub_kses($title); ?></h3>
                         <?php if (function_exists('bcn_display')) : ?>
                             <div class="tp-breadcrumb__list white">
                                 <?php bcn_display(); ?>
