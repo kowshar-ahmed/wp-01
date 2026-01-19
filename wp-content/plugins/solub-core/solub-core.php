@@ -14,6 +14,8 @@
 
 if (! defined('ABSPATH')) exit; // Exit if accessed directly
 
+include_once('include/solub-core-function.php');
+
 /**
  * Main Solub Core Class
  *
