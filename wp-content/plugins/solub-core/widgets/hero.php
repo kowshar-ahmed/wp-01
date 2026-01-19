@@ -106,9 +106,9 @@ class Solub_hero extends Widget_Base
 	protected function register_controls()
 	{
 		$this->start_controls_section(
-			'section_content',
+			'title_section',
 			[
-				'label' => __('Content', 'solub-core'),
+				'label' => __('Title and Content', 'solub-core'),
 			]
 		);
 
@@ -116,6 +116,13 @@ class Solub_hero extends Widget_Base
 			'title',
 			[
 				'label' => __('Title', 'solub-core'),
+				'type' => Controls_Manager::TEXT,
+			]
+		);
+		$this->add_control(
+			'content',
+			[
+				'label' => __('Content', 'solub-core'),
 				'type' => Controls_Manager::TEXT,
 			]
 		);
