@@ -4,6 +4,7 @@ namespace ElementorHelloWorld\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use Kirki\Control\Image;
 
 if (! defined('ABSPATH')) exit; // Exit if accessed directly
 
@@ -105,6 +106,7 @@ class Solub_hero extends Widget_Base
 	 */
 	protected function register_controls()
 	{
+		// Title and Content Section
 		$this->start_controls_section(
 			'title_section',
 			[
@@ -133,6 +135,98 @@ class Solub_hero extends Widget_Base
 		);
 
 		$this->end_controls_section();
+
+
+
+
+		// Video Section
+		$this->start_controls_section(
+			'video_section',
+			[
+				'label' => __('Video', 'solub-core'),
+			]
+		);
+
+
+
+		$this->add_control(
+			'video_url',
+			[
+				'label' => __('Video URL', 'solub-core'),
+				'type' => Controls_Manager::TEXT,
+				'default' => __('#', 'solub-core'),
+				'label_block' => true,
+			]
+		);
+
+		$this->end_controls_section();
+
+
+
+
+		// Image Section 
+		$this->start_controls_section(
+			'image_section',
+			[
+				'label' => __('Image', 'solub-core'),
+			]
+		);
+
+		$this->add_control(
+			'image_bg',
+			[
+				'label' => esc_html__('Choose Image', 'textdomain'),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+			]
+		);
+
+		$this->end_controls_section();
+
+
+
+
+
+		$this->start_controls_section(
+			'button_section',
+			[
+				'label' => __('Button', 'solub-core'),
+			]
+		);
+
+		$this->add_control(
+			'button_text',
+			[
+				'label' => __('Button Text', 'solub-core'),
+				'type' => Controls_Manager::TEXT,
+				'default' => __('Button Text', 'solub-core'),
+				'label_block' => true,
+			]
+		);
+
+		$this->add_control(
+			'button_link',
+			[
+				'label' => esc_html__('Link', 'textdomain'),
+				'type' => \Elementor\Controls_Manager::URL,
+				'options' => ['url', 'is_external', 'nofollow'],
+				'default' => [
+					'url' => '#',
+					'is_external' => true,
+					'nofollow' => true,
+					// 'custom_attributes' => '',
+				],
+				'label_block' => true,
+			]
+		);
+
+		$this->end_controls_section();
+
+
+
+
 
 		$this->start_controls_section(
 			'section_style',
@@ -175,31 +269,50 @@ class Solub_hero extends Widget_Base
 	protected function render()
 	{
 		$settings = $this->get_settings_for_display();
+
+		if (! empty($settings['button_link'])) {
+			$this->add_link_attributes('button_arg', $settings['button_link']);
+			$this->add_render_attribute('button_arg', 'class', 'tp-btn btn-2 btn-text-flip');
+			$this->add_render_attribute('button_arg', 'class', 'new-id');
+		}
+
+
 ?>
-		
 
-
-
-		<section class="tp-hero-ptb tp-hero-hight p-relative" data-background="assets/img/hero/hero-bg-1.jpg">
+		<section class="tp-hero-ptb tp-hero-hight p-relative" style="background-image:url(<?php echo esc_url($settings['image_bg']['url']); ?>)">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="tp-hero-content p-relative">
 							<div class="tp-hero-heading">
-								<span class="tp-hero-heading-subtitle wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".3s">
-									<?php echo solub_core_kses($settings['sub_title']); ?>
-								</span>
-								<h3 class="tp-hero-heading-title wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".5s"><?php echo solub_core_kses($settings['title']); ?></h3>
+								<?php if ($settings['sub_title']) : ?>
+									<span class="tp-hero-heading-subtitle wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".3s">
+										<?php echo solub_core_kses($settings['sub_title']); ?>
+									</span>
+								<?php endif; ?>
+
+								<?php if ($settings['title']) : ?>
+									<h3 class="tp-hero-heading-title wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".5s"><?php echo solub_core_kses($settings['title']); ?></h3>
+								<?php endif; ?>
+
 							</div>
+
 							<div class="tp-hero-btn-box d-flex align-items-center wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".7s">
+
 								<div class="tp-hero-btn">
-									<a class="tp-btn btn-2 btn-text-flip" href="about.html"><span data-text="Discover More">Discover More</span></a>
+									<a <?php echo $this->get_render_attribute_string('button_arg'); ?>><span data-text="
+									<?php echo esc_html($settings['button_text']); ?>">
+											<?php echo esc_html($settings['button_text']); ?></span></a>
+
 								</div>
-								<a class="tp-hero-btn-video popup-video d-flex align-items-center" href="https://www.youtube.com/watch?v=go7QYaQR494"><span><svg width="11" height="14" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M11 7L0.5 13.0622V0.937822L11 7Z" fill="currentColor" />
-										</svg></span>
-									<img src="assets/img/hero/video-text.svg" alt="">
-								</a>
+
+								<?php if ($settings['video_url']) : ?>
+									<a class="tp-hero-btn-video popup-video d-flex align-items-center" href="<?php echo esc_html($settings['video_url']) ?>"><span><svg width="11" height="14" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M11 7L0.5 13.0622V0.937822L11 7Z" fill="currentColor" />
+											</svg></span>
+										<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/hero/video-text.svg" alt="">
+									</a>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>
