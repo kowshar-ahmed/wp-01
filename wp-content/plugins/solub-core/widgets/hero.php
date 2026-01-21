@@ -188,7 +188,7 @@ class Solub_hero extends Widget_Base
 
 
 
-
+		// Button Section
 		$this->start_controls_section(
 			'button_section',
 			[
@@ -223,6 +223,50 @@ class Solub_hero extends Widget_Base
 		);
 
 		$this->end_controls_section();
+
+
+
+
+		// Info Section
+		$this->start_controls_section(
+			'Info_section',
+			[
+				'label' => __('Info', 'solub-core'),
+			]
+		);
+
+		$this->add_control(
+			'info_text',
+			[
+				'label' => __('Info Text', 'solub-core'),
+				'type' => Controls_Manager::TEXTAREA,
+				'default' => __('Info Text', 'solub-core'),
+				'label_block' => true,
+			]
+		);
+
+		$this->add_control(
+			'info_number',
+			[
+				'label' => __('Info Number', 'solub-core'),
+				'type' => Controls_Manager::TEXT,
+				'default' => __('51,202,65+', 'solub-core'),
+				'label_block' => true,
+			]
+		);
+
+		$this->add_control(
+			'info_sub_text',
+			[
+				'label' => __('Info Title', 'solub-core'),
+				'type' => Controls_Manager::TEXT,
+				'default' => __('Sub Title', 'solub-core'),
+				'label_block' => true,
+			]
+		);
+
+		$this->end_controls_section();
+
 
 
 
@@ -273,7 +317,6 @@ class Solub_hero extends Widget_Base
 		if (! empty($settings['button_link'])) {
 			$this->add_link_attributes('button_arg', $settings['button_link']);
 			$this->add_render_attribute('button_arg', 'class', 'tp-btn btn-2 btn-text-flip');
-			$this->add_render_attribute('button_arg', 'class', 'new-id');
 		}
 
 
@@ -320,8 +363,7 @@ class Solub_hero extends Widget_Base
 			</div>
 			<div class="tp-hero-item wow fadeInRight" data-wow-duration=".9s" data-wow-delay=".3s">
 				<div class="tp-hero-item-content">
-					<span>Since 2012, our happy <br>
-						customers have avoided.</span>
+					<span><?php echo solub_core_kses($settings['info_text']); ?></span>
 				</div>
 				<div class="tp-hero-item-user-box">
 					<div class="tp-hero-item-user d-flex align-items-center">
@@ -338,8 +380,8 @@ class Solub_hero extends Widget_Base
 								</svg></span>
 						</div>
 						<div class="tp-hero-item-user-content">
-							<h4 class="tp-hero-item-user-title">51,202,65+</h4>
-							<p>Pounds of CO2</p>
+							<h4 class="tp-hero-item-user-title"><?php echo esc_html($settings['info_number']); ?></h4>
+							<p><?php echo esc_html($settings['info_sub_text']); ?></p>
 						</div>
 					</div>
 				</div>

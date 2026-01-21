@@ -111,10 +111,13 @@ class Plugin
 	{
 		// Its is now safe to include Widgets files
 		require_once(__DIR__ . '/widgets/hero.php');
+		require_once(__DIR__ . '/widgets/about.php');
+
+		// First 
 		require_once(__DIR__ . '/widgets/hello-world.php');
 		require_once(__DIR__ . '/widgets/inline-editing.php');
 
-		// Register Widgets
+		// Register Widgets first
 		$widgets_manager->register(new Widgets\Hello_World());
 		$widgets_manager->register(new Widgets\Inline_Editing());
 	}
