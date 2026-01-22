@@ -148,6 +148,53 @@ class Solub_About extends Widget_Base
 
 
 
+
+		$this->start_controls_section(
+			'features_section',
+			[
+				'label' => __('Features List', 'solub-core'),
+			]
+		);
+
+		$repeater = new \Elementor\Repeater();
+
+
+		$repeater->add_control(
+			'feature_title',
+			[
+				'label' => esc_html__('Title', 'textdomain'),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__('List Title', 'textdomain'),
+				'label_block' => true,
+			]
+		);
+
+		$this->add_control(
+			'item_list',
+			[
+				'label' => esc_html__('Repeater List', 'textdomain'),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater->get_controls(),
+				'default' => [
+					[
+						'feature_title' => esc_html__('Title #1', 'textdomain'),
+					],
+					[
+						'feature_title' => esc_html__('Title #2', 'textdomain'),
+					],
+					[
+						'feature_title' => esc_html__('Title #3', 'textdomain'),
+					],
+				],
+				'title_field' => '{{{ feature_title }}}',
+			]
+		);
+
+		$this->end_controls_section();
+
+
+
+
 		// Video Section
 		$this->start_controls_section(
 			'video_section',
@@ -398,15 +445,11 @@ class Solub_About extends Widget_Base
 							</div>
 							<div class="tp-about-list">
 								<ul>
+									<?php foreach($settings['item_list'] as $item) : ?>
 									<li><span><svg xmlns="http://www.w3.org/2000/svg" width="11" height="9" viewBox="0 0 11 9" fill="none">
 												<path d="M9.5451 1.27344L3.9201 7.04884L1.36328 4.42366" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-											</svg></span>Redefining energy with solar technology</li>
-									<li><span><svg xmlns="http://www.w3.org/2000/svg" width="11" height="9" viewBox="0 0 11 9" fill="none">
-												<path d="M9.5451 1.27344L3.9201 7.04884L1.36328 4.42366" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-											</svg></span>Solar solutions for a brighter tomorrow</li>
-									<li><span><svg xmlns="http://www.w3.org/2000/svg" width="11" height="9" viewBox="0 0 11 9" fill="none">
-												<path d="M9.5451 1.27344L3.9201 7.04884L1.36328 4.42366" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-											</svg></span>Flexibility work environment</li>
+											</svg></span><?php echo solub_core_kses($item['feature_title']); ?></li>
+									<?php endforeach; ?>
 								</ul>
 							</div>
 							<div class="tp-about-btn-box d-flex align-items-center">
