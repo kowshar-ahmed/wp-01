@@ -106,7 +106,15 @@ class Solub_About extends Widget_Base
 	 */
 	protected function register_controls()
 	{
-		// Title and Content Section
+		$this->register_controls_section();
+		$this->register_style_section();
+	}
+
+
+
+	// Title and Content Section
+	protected function register_controls_section()
+	{
 		$this->start_controls_section(
 			'title_section',
 			[
@@ -342,12 +350,13 @@ class Solub_About extends Widget_Base
 		);
 
 		$this->end_controls_section();
+	}
 
 
 
 
-
-
+	protected function register_style_section()
+	{
 		$this->start_controls_section(
 			'section_style',
 			[

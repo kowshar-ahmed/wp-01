@@ -106,7 +106,12 @@ class Solub_Services extends Widget_Base
 	 */
 	protected function register_controls()
 	{
-		// Title and Content Section
+		$this->register_controls_section();
+		$this->register_style_section();
+	}
+	// Title and Content Section
+	protected function register_controls_section()
+	{
 		$this->start_controls_section(
 			'title_section',
 			[
@@ -320,13 +325,14 @@ class Solub_Services extends Widget_Base
 		);
 
 		$this->end_controls_section();
+	}
 
 
 
 
-
-		// Style Section
-
+	// Style Section
+	protected function register_style_section()
+	{
 		$this->start_controls_section(
 			'section_style',
 			[
@@ -388,7 +394,7 @@ class Solub_Services extends Widget_Base
 						<div class="tp-service-box wow fadeInLeft" data-wow-duration=".9s" data-wow-delay=".3s">
 							<div class="tp-service-heading mb-50">
 								<span class="tp-section-title-pre"><?php echo solub_core_kses($settings['sub_title']); ?></span>
-								<h4 class="tp-section-title mb-30"><?php echo solub_core_kses($settings['sub_title']); ?></h4>
+								<h4 class="tp-section-title mb-30"><?php echo solub_core_kses($settings['title']); ?></h4>
 								<p><?php echo solub_core_kses($settings['description']); ?></p>
 							</div>
 							<div class="tp-service-btn">

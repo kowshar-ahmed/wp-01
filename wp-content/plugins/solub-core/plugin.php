@@ -113,6 +113,12 @@ class Plugin
 		require_once(__DIR__ . '/widgets/hero.php');
 		require_once(__DIR__ . '/widgets/about.php');
 		require_once(__DIR__ . '/widgets/services.php');
+		require_once(__DIR__ . '/widgets/faq.php');
+		require_once(__DIR__ . '/widgets/heading.php');
+		require_once(__DIR__ . '/widgets/icon-box-list.php');
+
+
+
 
 		// First 
 		require_once(__DIR__ . '/widgets/hello-world.php');
