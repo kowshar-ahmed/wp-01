@@ -354,7 +354,6 @@ class Solub_hero extends Widget_Base
 									<a <?php echo $this->get_render_attribute_string('button_arg'); ?>><span data-text="
 									<?php echo esc_html($settings['button_text']); ?>">
 											<?php echo esc_html($settings['button_text']); ?></span></a>
-
 								</div>
 
 								<?php if ($settings['video_url']) : ?>
