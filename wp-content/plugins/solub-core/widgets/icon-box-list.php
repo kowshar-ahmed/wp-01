@@ -104,12 +104,14 @@ class Solub_Icon_List extends Widget_Base
 	 *
 	 * @access protected
 	 */
-	protected function register_controls(){
+	protected function register_controls()
+	{
 		$this->register_controls_section();
 		$this->register_style_section();
 	}
 
-	protected function register_controls_section() {
+	protected function register_controls_section()
+	{
 		$this->start_controls_section(
 			'item_section',
 			[
@@ -178,6 +180,28 @@ class Solub_Icon_List extends Widget_Base
 		);
 
 		$repeater->add_control(
+			'icon_bg_color',
+			[
+				'label' => esc_html__('Icon BG Color', 'textdomain'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} .tp-el-icon' => 'background-color: {{VALUE}}',
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'icon_color',
+			[
+				'label' => esc_html__('Icon Color', 'textdomain'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} .tp-el-icon' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$repeater->add_control(
 			'item_title',
 			[
 				'label' => esc_html__('Title', 'textdomain'),
@@ -206,56 +230,136 @@ class Solub_Icon_List extends Widget_Base
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
-						'feature_title' => esc_html__('Title #1', 'textdomain'),
+						'item_title' => esc_html__('Title #1', 'textdomain'),
 					],
 					[
-						'feature_title' => esc_html__('Title #2', 'textdomain'),
+						'item_title' => esc_html__('Title #2', 'textdomain'),
 					],
 					[
-						'feature_title' => esc_html__('Title #3', 'textdomain'),
+						'item_title' => esc_html__('Title #3', 'textdomain'),
 					],
 				],
-				'title_field' => '{{{ feature_title }}}',
+				'title_field' => '{{{ item_title }}}',
 			]
 		);
 
 		$this->end_controls_section();
-
 	}
 
 
 
 
 	// Style Section
-	protected function register_style_section(){
+	protected function register_style_section()
+	{
 		$this->start_controls_section(
-			'section_style',
+			'title_section_style',
 			[
-				'label' => __('Style', 'solub-core'),
+				'label' => __('Title', 'solub-core'),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
 		$this->add_control(
-			'text_transform',
+			'title_margin',
 			[
-				'label' => __('Text Transform', 'solub-core'),
-				'type' => Controls_Manager::SELECT,
-				'default' => '',
-				'options' => [
-					'' => __('None', 'solub-core'),
-					'uppercase' => __('UPPERCASE', 'solub-core'),
-					'lowercase' => __('lowercase', 'solub-core'),
-					'capitalize' => __('Capitalize', 'solub-core'),
+				'label' => esc_html__('Margin', 'textdomain'),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+				'default' => [
+					'top' => 0,
+					'right' => 0,
+					'bottom' => 0,
+					'left' => 0,
+					'unit' => 'px',
+					'isLinked' => false,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .title' => 'text-transform: {{VALUE}};',
+					'{{WRAPPER}} .tp-el-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
 
+
+		$this->add_control(
+			'title_color',
+			[
+				'label' => esc_html__('Text Color', 'textdomain'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .tp-el-title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography',
+				'selector' => '{{WRAPPER}} .tp-el-title',
+			]
+		);
+
+
 		$this->end_controls_section();
-	
+
+
+
+
+
+
+
+		
+		$this->start_controls_section(
+			'content_section_style',
+			[
+				'label' => __('Content', 'solub-core'),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'content_margin',
+			[
+				'label' => esc_html__('Margin', 'textdomain'),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+				'default' => [
+					'top' => 0,
+					'right' => 0,
+					'bottom' => 0,
+					'left' => 0,
+					'unit' => 'px',
+					'isLinked' => false,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .tp-el-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+
+		$this->add_control(
+			'content_color',
+			[
+				'label' => esc_html__('Text Color', 'textdomain'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .tp-el-content' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'content_typography',
+				'selector' => '{{WRAPPER}} .tp-el-content',
+			]
+		);
+
+
+		$this->end_controls_section();
 	}
 
 	/**
@@ -280,9 +384,9 @@ class Solub_Icon_List extends Widget_Base
 
 		<?php foreach ($settings['item_list'] as $item) : ?>
 
-			<div class="tp-faq-item d-flex align-items-center mb-40">
+			<div class="tp-faq-item d-flex align-items-center mb-40 elementor-repeater-item-<?php echo esc_attr($item['_id']); ?>">
 				<div class="tp-faq-item-icon">
-					<span>
+					<span class="tp-el-icon">
 						<?php if ($item['icon_style'] == 'svg') { ?>
 							<?php echo $item['svg']; ?>
 						<?php } elseif ($item['icon_style'] == 'image') { ?>
@@ -293,8 +397,8 @@ class Solub_Icon_List extends Widget_Base
 					</span>
 				</div>
 				<div class="tp-faq-item-content">
-					<h4><?php echo solub_core_kses($item['item_title']); ?></h4>
-					<p><?php echo solub_core_kses($item['item_desc']); ?></p>
+					<h4 class="tp-el-title"><?php echo solub_core_kses($item['item_title']); ?></h4>
+					<p class="tp-el-content"><?php echo solub_core_kses($item['item_desc']); ?></p>
 				</div>
 			</div>
 		<?php endforeach; ?>

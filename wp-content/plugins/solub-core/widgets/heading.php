@@ -158,6 +158,43 @@ class Solub_Heading extends Widget_Base
 	protected function register_style_section()
 	{
 		$this->start_controls_section(
+			'main_section_style',
+			[
+				'label' => __('Section', 'solub-core'),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'section_content_align',
+			[
+				'label' => esc_html__('Alignment', 'textdomain'),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__('Left', 'textdomain'),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => esc_html__('Center', 'textdomain'),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => esc_html__('Right', 'textdomain'),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => 'left',
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .tp-el-section' => 'text-align: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
 			'section_style',
 			[
 				'label' => __('Sub Title', 'solub-core'),
@@ -207,6 +244,60 @@ class Solub_Heading extends Widget_Base
 
 
 		$this->end_controls_section();
+
+
+
+
+		$this->start_controls_section(
+			'title_section_style',
+			[
+				'label' => __('Title', 'solub-core'),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'title_margin',
+			[
+				'label' => esc_html__('Margin', 'textdomain'),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+				'default' => [
+					'top' => 0,
+					'right' => 0,
+					'bottom' => 0,
+					'left' => 0,
+					'unit' => 'px',
+					'isLinked' => false,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .tp-el-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+
+		$this->add_control(
+			'title_color',
+			[
+				'label' => esc_html__('Text Color', 'textdomain'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .tp-el-title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'sub_title_typography',
+				'selector' => '{{WRAPPER}} .tp-el-title',
+			]
+		);
+
+
+		$this->end_controls_section();
 	}
 
 	/**
@@ -231,13 +322,13 @@ class Solub_Heading extends Widget_Base
 
 
 
-		<div class="tp-about-heading">
+		<div class="tp-about-heading tp-el-section">
 			<?php if (!empty($settings['sub_title'])) : ?>
 				<span class="tp-section-title-pre tp-el-sub-title"><?php echo solub_core_kses($settings['sub_title']); ?></span>
 			<?php endif; ?>
 
 			<?php if (!empty($settings['title'])) : ?>
-				<h4 class="tp-section-title mb-30"><?php echo solub_core_kses($settings['title']); ?> <br>
+				<h4 class="tp-section-title mb-30 tp-el-title"><?php echo solub_core_kses($settings['title']); ?> <br>
 				</h4>
 			<?php endif; ?>
 

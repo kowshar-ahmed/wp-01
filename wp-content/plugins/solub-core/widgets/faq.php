@@ -151,16 +151,16 @@ class Solub_Faq extends Widget_Base
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
-						'feature_title' => esc_html__('Title #1', 'textdomain'),
+						'item_title' => esc_html__('Title #1', 'textdomain'),
 					],
 					[
-						'feature_title' => esc_html__('Title #2', 'textdomain'),
+						'item_title' => esc_html__('Title #2', 'textdomain'),
 					],
 					[
-						'feature_title' => esc_html__('Title #3', 'textdomain'),
+						'item_title' => esc_html__('Title #3', 'textdomain'),
 					],
 				],
-				'title_field' => '{{{ feature_title }}}',
+				'title_field' => '{{{ item_title }}}',
 			]
 		);
 
