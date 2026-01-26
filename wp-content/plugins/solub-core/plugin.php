@@ -116,6 +116,8 @@ class Plugin
 		require_once(__DIR__ . '/widgets/faq.php');
 		require_once(__DIR__ . '/widgets/heading.php');
 		require_once(__DIR__ . '/widgets/icon-box-list.php');
+		require_once(__DIR__ . '/widgets/choose.php');
+		require_once(__DIR__ . '/widgets/button.php');
 
 
 
