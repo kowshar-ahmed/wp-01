@@ -4,7 +4,6 @@ namespace ElementorHelloWorld\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
-use Kirki\Control\Image;
 
 if (! defined('ABSPATH')) exit; // Exit if accessed directly
 
