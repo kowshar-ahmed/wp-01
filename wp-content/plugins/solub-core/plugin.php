@@ -118,6 +118,10 @@ class Plugin
 		require_once(__DIR__ . '/widgets/icon-box-list.php');
 		require_once(__DIR__ . '/widgets/choose.php');
 		require_once(__DIR__ . '/widgets/button.php');
+		require_once(__DIR__ . '/widgets/portfolio-list.php');
+		require_once(__DIR__ . '/widgets/video.php');
+		require_once(__DIR__ . '/widgets/testimonial-list.php');
+		require_once(__DIR__ . '/widgets/team-box.php');
 
 
 

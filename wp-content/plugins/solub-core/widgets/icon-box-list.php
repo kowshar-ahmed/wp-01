@@ -121,7 +121,6 @@ class Solub_Icon_List extends Widget_Base
 
 		$repeater = new \Elementor\Repeater();
 
-
 		$repeater->add_control(
 			'icon_style',
 			[
@@ -309,7 +308,7 @@ class Solub_Icon_List extends Widget_Base
 
 
 
-		
+
 		$this->start_controls_section(
 			'content_section_style',
 			[
@@ -386,14 +385,14 @@ class Solub_Icon_List extends Widget_Base
 
 			<div class="tp-faq-item d-flex align-items-center mb-40 elementor-repeater-item-<?php echo esc_attr($item['_id']); ?>">
 				<div class="tp-faq-item-icon">
-					<span class="tp-el-icon">
-						<?php if ($item['icon_style'] == 'svg') { ?>
+					<span>
+						<?php if ($item['icon_style'] == 'svg') : ?>
 							<?php echo $item['svg']; ?>
-						<?php } elseif ($item['icon_style'] == 'image') { ?>
-							<img src="<?php echo $item['image']['url']; ?>" alt="<?php echo esc_attr($item['item_title']); ?>">
-						<?php } else { ?>
+						<?php elseif ($item['icon_style'] == 'image') : ?>
+							<img src="<?php echo $item['image']['url']; ?>" alt="">
+						<?php else: ?>
 							<?php \Elementor\Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']); ?>
-						<?php } ?>
+						<?php endif; ?>
 					</span>
 				</div>
 				<div class="tp-faq-item-content">

@@ -15,7 +15,7 @@ if (! defined('ABSPATH')) exit; // Exit if accessed directly
  *
  * @since 1.0.0
  */
-class Solub_hero extends Widget_Base
+class Solub_Hero extends Widget_Base
 {
 
 	/**
@@ -29,7 +29,7 @@ class Solub_hero extends Widget_Base
 	 */
 	public function get_name()
 	{
-		return 'Solub-hero';
+		return 'solub-hero';
 	}
 
 	/**
@@ -401,4 +401,4 @@ class Solub_hero extends Widget_Base
 	}
 }
 
-$widgets_manager->register(new Solub_hero());
+$widgets_manager->register(new Solub_Hero());

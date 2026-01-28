@@ -38,11 +38,12 @@ function solub_breadcrumb()
         $bg_img = $breadcrumb_img;
     }
 
-
-    // var_dump($breadcrumb_img);
+    $breadcrumb_onoff = function_exists('get_field') ? get_field('breadcrumb_onoff') : '';
+    // var_dump($breadcrumb_onoff);
 
 ?>
     <!-- beadcrumb area start -->
+    <?php if ($breadcrumb_onoff) : ?>
     <div class="tp-breadcrumb__ptb tp-breadcrumb__bg p-relative z-index-1 fix" data-background="<?php echo esc_url($bg_img); ?>">
         <div class="container">
             <div class="row align-items-center">
@@ -59,6 +60,7 @@ function solub_breadcrumb()
             </div>
         </div>
     </div>
+    <?php endif; ?>
     <!-- beadcrumb area end -->
 <?php
 }

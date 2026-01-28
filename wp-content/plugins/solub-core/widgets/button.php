@@ -4,6 +4,7 @@ namespace ElementorHelloWorld\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use Kirki\Control\Image;
 
 if (! defined('ABSPATH')) exit; // Exit if accessed directly
 
@@ -228,9 +229,9 @@ class Solub_Button extends Widget_Base
 	{
 		$settings = $this->get_settings_for_display();
 
-		
 
-		
+
+
 
 ?>
 
@@ -240,7 +241,7 @@ class Solub_Button extends Widget_Base
 				$this->add_link_attributes('button_arg', $settings['button_link']);
 				$this->add_render_attribute('button_arg', 'class', 'tp-btn btn-text-flip');
 			}
-			?>
+		?>
 			<div class="tp-solub-btn tp-el-section">
 				<a <?php echo $this->get_render_attribute_string('button_arg'); ?>>
 					<span data-text="<?php echo esc_html($settings['button_text']); ?>">
@@ -253,7 +254,7 @@ class Solub_Button extends Widget_Base
 				$this->add_link_attributes('button_arg', $settings['button_link']);
 				$this->add_render_attribute('button_arg', 'class', 'tp-btn btn-text-flip');
 			}
-			?>
+		?>
 			<div class="tp-solub-btn tp-portfolio-btn-wrap tp-el-section">
 				<a <?php echo $this->get_render_attribute_string('button_arg'); ?>>
 					<span data-text="<?php echo esc_html($settings['button_text']); ?>">
@@ -269,7 +270,7 @@ class Solub_Button extends Widget_Base
 			?>
 				<div class="tp-solub-btn tp-el-section">
 					<a <?php echo $this->get_render_attribute_string('button_arg'); ?>><span data-text="
-										<?php echo esc_html($settings['button_text']); ?>">
+						<?php echo esc_html($settings['button_text']); ?>">
 							<?php echo esc_html($settings['button_text']); ?></span>
 					</a>
 				</div>
