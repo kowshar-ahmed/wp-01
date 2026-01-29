@@ -60,3 +60,8 @@ p.logged-in-as a {
   letter-spacing: -1.08px;
   color: var(--tp-heading-primary);
 }
+
+
+.tp-blog-item-tags a {
+    margin-bottom: 5px;
+}
