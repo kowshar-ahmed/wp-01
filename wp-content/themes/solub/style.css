@@ -60,8 +60,10 @@ p.logged-in-as a {
   letter-spacing: -1.08px;
   color: var(--tp-heading-primary);
 }
-
-
 .tp-blog-item-tags a {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
+}
+body .tp-step-item-thumb img {
+  border-radius: 50%;
+  border: 15px solid #ebf3ed;
 }

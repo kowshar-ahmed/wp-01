@@ -15,7 +15,7 @@ if (! defined('ABSPATH')) exit; // Exit if accessed directly
  *
  * @since 1.0.0
  */
-class Solub_Icon_List extends Widget_Base
+class Solub_Step extends Widget_Base
 {
 
 	/**
@@ -29,7 +29,7 @@ class Solub_Icon_List extends Widget_Base
 	 */
 	public function get_name()
 	{
-		return 'solub-icon-list';
+		return 'solub-step-list';
 	}
 
 	/**
@@ -43,7 +43,7 @@ class Solub_Icon_List extends Widget_Base
 	 */
 	public function get_title()
 	{
-		return __('Icon Box List', 'solub-core');
+		return __('Step List', 'solub-core');
 	}
 
 	/**
@@ -112,31 +112,6 @@ class Solub_Icon_List extends Widget_Base
 
 	protected function register_controls_section()
 	{
-
-		$this->start_controls_section(
-			'design_section',
-			[
-				'label' => __('Select Layout', 'solub-core'),
-			]
-		);
-
-		$this->add_control(
-			'design_style',
-			[
-				'label' => esc_html__('Select Style', 'textdomain'),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'default' => 'style_1',
-				'options' => [
-					'style_1' => esc_html__('Style 01', 'textdomain'),
-					'style_2'  => esc_html__('Style 02', 'textdomain'),
-				],
-			]
-		);
-
-		$this->end_controls_section();
-
-
-
 		$this->start_controls_section(
 			'item_section',
 			[
@@ -146,48 +121,6 @@ class Solub_Icon_List extends Widget_Base
 
 		$repeater = new \Elementor\Repeater();
 
-		$repeater->add_control(
-			'icon_style',
-			[
-				'label' => esc_html__('Select Icon Style', 'textdomain'),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'default' => 'icon',
-				'options' => [
-					'icon' => esc_html__('icon', 'textdomain'),
-					'svg'  => esc_html__('svg', 'textdomain'),
-					'image'  => esc_html__('image', 'textdomain'),
-				],
-			]
-		);
-
-		$repeater->add_control(
-			'icon',
-			[
-				'label' => esc_html__('Icon', 'textdomain'),
-				'type' => \Elementor\Controls_Manager::ICONS,
-				'default' => [
-					'value' => 'fas fa-circle',
-					'library' => 'fa-solid',
-				],
-				'condition' => [
-					'icon_style' => 'icon',
-				],
-			]
-		);
-
-
-		$repeater->add_control(
-			'svg',
-			[
-				'label' => esc_html__('SVG', 'textdomain'),
-				'type' => \Elementor\Controls_Manager::TEXTAREA,
-				'default' => esc_html__('', 'textdomain'),
-				'label_block' => true,
-				'condition' => [
-					'icon_style' => 'svg',
-				],
-			]
-		);
 
 		$repeater->add_control(
 			'image',
@@ -196,31 +129,6 @@ class Solub_Icon_List extends Widget_Base
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
-				],
-				'condition' => [
-					'icon_style' => 'image',
-				],
-			]
-		);
-
-		$repeater->add_control(
-			'icon_bg_color',
-			[
-				'label' => esc_html__('Icon BG Color', 'textdomain'),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}} .tp-el-icon' => 'background-color: {{VALUE}}',
-				],
-			]
-		);
-
-		$repeater->add_control(
-			'icon_color',
-			[
-				'label' => esc_html__('Icon Color', 'textdomain'),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}} .tp-el-icon' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -402,54 +310,45 @@ class Solub_Icon_List extends Widget_Base
 
 ?>
 
-		<?php if ($settings['design_style'] == 'style_2'): ?>
 
 
-			<div class="tp-contact-wrap">
-				<?php foreach ($settings['item_list'] as $item) : ?>
-					<div class="tp-contact-item d-flex align-items-center mb-15">
-						<div class="tp-contact-item-icon">
-							<span>
-								<?php if ($item['icon_style'] == 'svg') : ?>
-									<?php echo $item['svg']; ?>
-								<?php elseif ($item['icon_style'] == 'image') : ?>
-									<img src="<?php echo $item['image']['url']; ?>" alt="">
-								<?php else: ?>
-									<?php \Elementor\Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']); ?>
-								<?php endif; ?>
-							</span>
+
+
+		<section class="tp-step-ptb">
+			<div class="container">
+				<div class="tp-step-box p-relative wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".3s">
+					<div class="tp-step-shapes">
+						<div class="tp-step-shape-1">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/img/step/step-arrow-1.png" alt="">
 						</div>
-						<div class="tp-contact-item-content">
-							<p><?php echo solub_core_kses($item['item_title']); ?></p>
-							<?php echo solub_core_kses($item['item_desc']); ?>
+						<div class="tp-step-shape-2">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/img/step/step-arrow-2.png" alt="">
+						</div>
+						<div class="tp-step-shape-3">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/img/step/step-arrow-3.png" alt="">
 						</div>
 					</div>
-				<?php endforeach; ?>
-			</div>
-
-
-
-		<?php else : ?>
-			<?php foreach ($settings['item_list'] as $item) : ?>
-				<div class="tp-faq-item d-flex align-items-center mb-40 elementor-repeater-item-<?php echo esc_attr($item['_id']); ?>">
-					<div class="tp-faq-item-icon">
-						<span>
-							<?php if ($item['icon_style'] == 'svg') : ?>
-								<?php echo $item['svg']; ?>
-							<?php elseif ($item['icon_style'] == 'image') : ?>
-								<img src="<?php echo $item['image']['url']; ?>" alt="">
-							<?php else: ?>
-								<?php \Elementor\Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']); ?>
-							<?php endif; ?>
-						</span>
-					</div>
-					<div class="tp-faq-item-content">
-						<h4 class="tp-el-title"><?php echo solub_core_kses($item['item_title']); ?></h4>
-						<p class="tp-el-content"><?php echo solub_core_kses($item['item_desc']); ?></p>
+					<div class="row">
+						<?php foreach ($settings['item_list'] as $key => $item) : 
+							$step_num = $key + 1;
+						?>
+							<div class="col-lg-3 col-md-6">
+								<div class="tp-step-item p-relative text-center mb-30">
+									<div class="tp-step-item-thumb p-relative mb-20">
+										<img src="<?php echo $item['image']['url']; ?>" alt="">
+										<span><?php echo esc_html($step_num); ?></span>
+									</div>
+									<div class="tp-step-item-content">
+										<h4 class="tp-step-item-title"><?php echo solub_core_kses($item['item_title']); ?></h4>
+										<p><?php echo solub_core_kses($item['item_desc']); ?></p>
+									</div>
+								</div>
+							</div>
+						<?php endforeach; ?>
 					</div>
 				</div>
-			<?php endforeach; ?>
-		<?php endif; ?>
+			</div>
+		</section>
 
 
 
@@ -460,4 +359,4 @@ class Solub_Icon_List extends Widget_Base
 	}
 }
 
-$widgets_manager->register(new Solub_Icon_List());
+$widgets_manager->register(new Solub_Step());

@@ -123,6 +123,8 @@ class Plugin
 		require_once(__DIR__ . '/widgets/video.php');
 		require_once(__DIR__ . '/widgets/testimonial-list.php');
 		require_once(__DIR__ . '/widgets/team-box.php');
+		require_once(__DIR__ . '/widgets/step.php');
+		require_once(__DIR__ . '/widgets/contact-form.php');
 
 
 
