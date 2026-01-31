@@ -86,6 +86,16 @@ if ( ! function_exists( 'solub_setup' ) ) :
         ) );
 
         register_sidebar( array(
+            'name'          => __( 'Services Sidebar', 'solub' ),
+            'id'            => 'services-sidebar',
+            'description'   => __( 'This widgets will display in services sidebar', 'solub' ),
+            'before_widget' => '<div id="%1$s" class="tp-service-sidebar-content mb-40 %2$s">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h4 class="tp-service-sidebar-title">',
+            'after_title'   => '</h4>',
+        ) );
+
+        register_sidebar( array(
             'name'          => __( 'Footer Widget 01', 'solub' ),
             'id'            => 'footer-widget-1',
             'description'   => __( 'This widgets will display in footer widget 01', 'solub' ),
@@ -167,8 +177,6 @@ if ( ! function_exists( 'solub_setup' ) ) :
     }
     require_once('inc/template-function.php');
     require_once('inc/nav-walker.php');
-    require_once('inc/solub-recent-post.php');
-    require_once('inc/solub-cat-list.php');
     require_once('inc/breadcrumb.php');
 
 
