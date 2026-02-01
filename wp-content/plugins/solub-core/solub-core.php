@@ -16,6 +16,7 @@ if (! defined('ABSPATH')) exit; // Exit if accessed directly
 
 include_once('include/solub-core-function.php');
 include_once('include/services-post-type.php');
+include_once('include/portfolio-post-type.php');
 include_once('custom-widgets/solub-cat-list.php');
 include_once('custom-widgets/solub-recent-post.php');
 include_once('custom-widgets/solub-services-post.php');
