@@ -136,7 +136,7 @@ class Solub_Portfolio_Post extends Widget_Base
 				'type' => \Elementor\Controls_Manager::SELECT2,
 				'label_block' => true,
 				'multiple' => true,
-				'options' => tp_all_post(),
+				'options' => tp_all_post('portfolio'), // Pass 'portfolio' to get only portfolio posts
 			]
 		);
 
@@ -147,7 +147,7 @@ class Solub_Portfolio_Post extends Widget_Base
 				'type' => \Elementor\Controls_Manager::SELECT2,
 				'label_block' => true,
 				'multiple' => true,
-				'options' => tp_all_post(),
+				'options' => tp_all_post('portfolio'), // Pass 'portfolio' to get only portfolio posts
 			]
 		);
 
@@ -277,76 +277,36 @@ class Solub_Portfolio_Post extends Widget_Base
 ?>
 
 
-
-
-
-
 		<section class="tp-portfolio-breadcrumb-ptb pt-130 pb-130">
 			<div class="container">
 				<div class="row">
 					<?php if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
-							$categories = get_the_category();
+							$categories = get_the_terms(get_the_ID(), 'portfolio_category');
 					?>
-							<div class="col-lg-4 col-md-6">
-								<div class="tp-portfolio-5-item p-relative mb-30">
-									<div class="tp-portfolio-5-thumb p-relative">
-										<img src="assets/img/portfolio/home-3/project-3-1.jpg" alt="">
-									</div>
-									<div class="tp-portfolio-5-content">
-										<p>Solar system</p>
-										<h4 class="tp-portfolio-5-title"><a href="portfolio-details.html">Solar system</a></h4>
-									</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="tp-portfolio-5-item p-relative mb-30">
+								<div class="tp-portfolio-5-thumb p-relative">
+									<?php the_post_thumbnail(); ?>
+								</div>
+								<div class="tp-portfolio-5-content">
+									<p>
+									<?php
+									$html = '';
+									foreach ($categories as $key => $cat) {
+										$html .= '<span>'.$cat->name.'</span>,';
+									}
+									echo rtrim($html, ',');
+									?>
+									</p>
+									<h4 class="tp-portfolio-5-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 								</div>
 							</div>
+						</div>
 						<?php endwhile; ?>
 					<?php endif; ?>
 				</div>
 			</div>
 		</section>
-
-
-
-
-		<section class="tp-blog-ptb p-relative pt-140 pb-110" data-bg-color="#EBF3ED">
-			<div class="container">
-				<div class="row">
-					<?php if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
-							$categories = get_the_category();
-					?>
-							<div class="col-lg-4 col-md-6">
-								<div class="tp-blog-item mb-30 wow fadeInUp" data-wow-duration=".9s" data-wow-delay=".3s">
-									<div class="tp-blog-item-content mb-30">
-										<div class="tp-blog-item-tags">
-											<?php
-											if (! empty($categories)) {
-												$limited_categories = array_slice($categories, 0, 2); // Get only first two categories
-												foreach ($limited_categories as $category) {
-													echo '<a href="' . esc_url(get_category_link($category->term_id)) .
-														'">' .
-														esc_html($category->name) . '</a>';
-												}
-											}
-											?>
-										</div>
-										<h4 class="tp-blog-item-title"><a class="textline" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-									</div>
-									<div class="tp-blog-item-thumb p-relative">
-										<?php the_post_thumbnail(); ?>
-										<div class="tp-blog-item-btn">
-											<a href="<?php the_permalink(); ?>">Details <span><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
-														<path d="M1 9L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-														<path d="M1 1H9V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-													</svg></span></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						<?php endwhile; ?>
-					<?php endif; ?>
-				</div>
-			</div>
-		</section>
-
 
 
 
