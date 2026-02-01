@@ -38,28 +38,44 @@ function solub_breadcrumb()
         $bg_img = $breadcrumb_img;
     }
 
-    $breadcrumb_onoff = function_exists('get_field') ? get_field('breadcrumb_onoff') : '';
-    // var_dump($breadcrumb_onoff);
+    $_id = get_the_ID();
+
+    if (is_single() && 'product' == get_post_type()) {
+        $_id = $post->ID;
+    }
+    if (is_single() && 'services' == get_post_type()) {
+        $_id = $post->ID;
+    } 
+    // elseif (function_exists("is_shop") and is_shop()) {
+    //     $_id = wc_get_page_id('shop');
+    // } 
+    elseif (is_home() && get_option('page_for_posts')) {
+        $_id = get_option('page_for_posts');
+    }
+
+
+    $breadcrumb_onoff = function_exists('get_field') ? get_field('breadcrumb_onoff',$_id) : '';
+
 
 ?>
     <!-- beadcrumb area start -->
     <?php if ($breadcrumb_onoff) : ?>
-    <div class="tp-breadcrumb__ptb tp-breadcrumb__bg p-relative z-index-1 fix" data-background="<?php echo esc_url($bg_img); ?>">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-sm-12">
-                    <div class="tp-breadcrumb__content p-relative">
-                        <h3 class="tp-breadcrumb__title white"><?php echo solub_kses($title); ?></h3>
-                        <?php if (function_exists('bcn_display')) : ?>
-                            <div class="tp-breadcrumb__list white">
-                                <?php bcn_display(); ?>
-                            </div>
-                        <?php endif; ?>
+        <div class="tp-breadcrumb__ptb tp-breadcrumb__bg p-relative z-index-1 fix" data-background="<?php echo esc_url($bg_img); ?>">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-sm-12">
+                        <div class="tp-breadcrumb__content p-relative">
+                            <h3 class="tp-breadcrumb__title white"><?php echo solub_kses($title); ?></h3>
+                            <?php if (function_exists('bcn_display')) : ?>
+                                <div class="tp-breadcrumb__list white">
+                                    <?php bcn_display(); ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     <?php endif; ?>
     <!-- beadcrumb area end -->
 <?php

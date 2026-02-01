@@ -111,6 +111,7 @@ class Plugin
 	{
 		// Its is now safe to include Widgets files
 		require_once(__DIR__ . '/widgets/blog-post.php');
+		require_once(__DIR__ . '/widgets/portfolio-post.php');
 		require_once(__DIR__ . '/widgets/hero.php');
 		require_once(__DIR__ . '/widgets/about.php');
 		require_once(__DIR__ . '/widgets/services.php');
