@@ -38,7 +38,9 @@ function solub_breadcrumb()
         $bg_img = $breadcrumb_img;
     }
 
-    $breadcrumb_onoff = function_exists('get_field') ? get_field('breadcrumb_onoff') : '';
+
+
+    $breadcrumb_onoff = function_exists('get_field') ? get_field('breadcrumb_onoff',) : '';
     // var_dump($breadcrumb_onoff);
 
 ?>
