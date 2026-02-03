@@ -23,7 +23,6 @@
 </article>
 <?php else : ?>
 
-
 <article id="post-<?php the_ID(); ?>" <?php echo post_class('tp-postbox-item mb-75'); ?>>
     <?php if(has_post_thumbnail()): ?>
     <div class="tp-postbox-thumb p-relative">
@@ -53,4 +52,5 @@
         </div>
     </div>
 </article>
+
 <?php endif; ?>

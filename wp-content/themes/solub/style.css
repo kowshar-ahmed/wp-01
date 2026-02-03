@@ -16,54 +16,48 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
 
+
 .tp-footer-col-1.widget_custom_html {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 .tp-postbox-meta span img {
-  height: auto;
-  border-radius: 30px;
+	height: auto;
+	border-radius: 30px;
 }
 .tp-recent-post-thumb {
-  width: 90px;
-  height: 90px;
+	width: 90px;
+	height: 90px;
 }
 .tagcloud a {
-  font-size: 14px !important;
+	font-size: 14px !important;
 }
-.postbox-comment ul li .children {
-  margin-left: 70px;
-  margin-top: 40px;
+.postbox-comment ul li .children{
+	margin-left: 70px;
+	margin-top: 40px;
 }
 
 .comment-form-cookies-consent {
-  margin-bottom: 20px !important;
+	margin-bottom: 20px;
 }
-
-.comment-notes {
-  margin-bottom: 20px;
-}
-
 .logged-in-as {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
-
-p.logged-in-as a {
-  color: #338e48;
-  text-decoration: underline;
+.logged-in-as a {
+	color: var(--tp-theme-primary);
+	text-decoration: underline;
 }
-
 .comment-reply-title {
-  font-weight: 700;
-  font-size: 36px;
-  line-height: 1;
-  margin-bottom: 10px;
-  letter-spacing: -1.08px;
-  color: var(--tp-heading-primary);
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 1;
+	margin-bottom: 10px;
+	letter-spacing: -1.08px;
+	color: var(--tp-heading-primary);
 }
 .tp-blog-item-tags a {
-  margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 body .tp-step-item-thumb img {
-  border-radius: 50%;
-  border: 15px solid #ebf3ed;
+	border-radius: 50%;
+	border: 15px solid #EBF3ED;
 }

@@ -1,8 +1,15 @@
 <?php get_header(); ?>
 
-    <section class="tp-postbox-ptb p-relative pt-130 pb-120">
+    <section class="tp-postbox-ptb p-relative pt-130 pb-120 sdwsdsdsd">
         <div class="container">
             <div class="row justify-content-center">
+                <?php if(is_active_sidebar( 'blog-sidebar' )) : ?>
+                <div class="col-lg-4">
+                    <div class="tp-sidebar-wrapper pl-45">
+                        <?php get_sidebar(); ?>
+                    </div>
+                </div>
+                <?php endif; ?>
                 <div class="col-lg-8">
                     <div class="tp-postbox-wrapper">
                         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
@@ -20,6 +27,5 @@
             </div>
         </div>
     </section>
-
 
 <?php get_footer();
