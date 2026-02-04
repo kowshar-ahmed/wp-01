@@ -64,6 +64,8 @@ if ( ! function_exists( 'solub_setup' ) ) :
 
 
         remove_theme_support( 'widgets-block-editor' );
+
+        add_theme_support('woocommerce');
     
     }
     endif; // solub_setup
@@ -179,7 +181,9 @@ if ( ! function_exists( 'solub_setup' ) ) :
     require_once('inc/template-function.php');
     require_once('inc/nav-walker.php');
     require_once('inc/breadcrumb.php');
-
+if (class_exists('woocommerce')) {
+    require_once('inc/solub-woo.php');
+}
 
 /**
  * Generate custom search form
