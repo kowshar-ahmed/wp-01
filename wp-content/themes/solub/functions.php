@@ -204,3 +204,44 @@ function solub_search_form( $form ) {
 	return $form;
 }
 add_filter( 'get_search_form', 'solub_search_form' );
+
+
+
+
+// Action hook example
+
+// function text() {
+//     echo "<h1>Hello World 1</h1>";
+// }
+// add_action('demo', 'text', 5);
+
+// function text2() {
+//     echo "<h1>Hello World 2</h1>";
+// }
+// add_action('demo', 'text2', 10);
+
+// function text3() {
+//     echo "<h1>Hello World 3</h1>";
+// }
+// add_action('demo', 'text3', 15);
+
+// function text4() {
+//     echo "<h1>Hello World 4</h1>";
+// }
+// add_action('demo', 'text4', 1);
+
+
+// remove_action('demo', 'text3', 15);
+// remove_action('demo', 'text4' , 1);
+
+
+
+
+// // Filter example
+
+// function test_filter($tet){
+//     $test = '<h1>Hi Ostad</h1>';
+//     return $test;
+// }
+// add_filter('my_filter', 'test_filter');
+// remove_filter('my_filter', 'test_filter');

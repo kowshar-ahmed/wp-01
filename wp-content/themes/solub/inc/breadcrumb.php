@@ -41,7 +41,7 @@ function solub_breadcrumb()
     $breadcrumb_onoff = function_exists('get_field') ? get_field('breadcrumb_onoff') : '';
     // var_dump($breadcrumb_onoff);
 
-?>
+    ?>
     <!-- beadcrumb area start -->
     <?php if ($breadcrumb_onoff) : ?>
         <div class="tp-breadcrumb__ptb tp-breadcrumb__bg p-relative z-index-1 fix" data-background="<?php echo esc_url($bg_img); ?>">
@@ -64,3 +64,6 @@ function solub_breadcrumb()
     <!-- beadcrumb area end -->
 <?php
 }
+
+
+add_action('solub_before_content', 'solub_breadcrumb');

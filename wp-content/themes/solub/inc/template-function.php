@@ -1,5 +1,28 @@
 <?php
 
+// solub_header
+function solub_header(){
+
+    $header_style = function_exists('get_field') ? get_field('header_style') : '';
+
+    if($header_style == 'header_style_01'){
+        get_template_part('template-parts/header/header-1');
+    }
+    elseif($header_style == 'header_style_02'){
+        get_template_part('template-parts/header/header-2');
+    }
+    else{
+        get_template_part('template-parts/header/header-1');
+    }
+
+    // var_dump($header_style);
+}
+add_action('solub_before_content', 'solub_header');
+
+
+
+
+
 
 // menu 
 function solub_main_menu(){

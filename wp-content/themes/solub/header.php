@@ -40,6 +40,12 @@
    <!-- back to top end -->
 
 
-   <?php get_template_part('template-parts/header/header-1'); ?>
 
-<?php solub_breadcrumb(); ?>
+<?php do_action('solub_before_content'); ?>
+
+
+
+<?php //do_action('demo');?>
+
+
+<?php //echo apply_filters('my_filter', 'Hi filter'); ?>
