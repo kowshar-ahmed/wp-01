@@ -35,6 +35,22 @@ function header_section(){
         ]
     );
     
+
+    new \Kirki\Field\Select(
+        [
+            'settings'    => 'header_global',
+            'label'       => esc_html__( 'Global Header Select Control', 'kirki' ),
+            'section'     => 'solub_header',
+            'default'     => 'header-global-1',
+            'placeholder' => esc_html__( 'Choose an option', 'kirki' ),
+            'choices'     => [
+                'header-global-1' => esc_html__( 'Header Style 01', 'kirki' ),
+                'header-global-2' => esc_html__( 'Header Style 02', 'kirki' ),
+            ],
+        ]
+    );
+
+
     new \Kirki\Field\Text(
         [
             'settings' => 'header_time',
@@ -160,8 +176,8 @@ function breadcrumb_section(){
     new \Kirki\Section(
         'solub_breadcrumb',
         [
-            'title'       => esc_html__('Breadcrumb', 'solub' ),
-            'description' => esc_html__('Breadcrumb information here you can find.', 'solub' ),
+            'title'       => esc_html__( 'Breadcrumb', 'solub' ),
+            'description' => esc_html__( 'Breadcrumb information here you can find.', 'solub' ),
             'panel'       => 'solub_panel',
             'priority'    => 160,
         ]
@@ -170,13 +186,11 @@ function breadcrumb_section(){
     new \Kirki\Field\Image(
         [
             'settings'    => 'breadcrumb_img',
-            'label'       => esc_html__('Breadcrumb Background image', 'solub'),
-            'description' => esc_html__('Please upload your breadcrumb background image here.', 'solub'),
+            'label'       => esc_html__( 'Breadcrumb Image', 'solub' ),
+            'description' => esc_html__( 'Please upload your breadcrumb image.', 'solub' ),
             'section'     => 'solub_breadcrumb',
         ]
-    ); 
-
-  
+    );
 }
 breadcrumb_section();
 

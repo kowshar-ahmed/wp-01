@@ -1,69 +1,94 @@
 <?php
 
-function solub_breadcrumb()
-{
+function solub_breadcrumb(){ 
     global $post;
 
-    if (is_front_page() && is_home()) {
-        $title = __('Blog', 'exdos');
-    } elseif (is_front_page()) {
-        $title =  __('Blog', 'exdos');
-    } elseif (is_home()) {
-        if (get_option('page_for_posts')) {
-            $title = get_the_title(get_option('page_for_posts'));
-        }
-    } elseif (is_single() && 'post' == get_post_type()) {
-        $title = get_the_title();
-    } elseif (is_single() && 'service' == get_post_type()) {
-        $title = get_the_title();
-    } elseif (is_single() && 'product' == get_post_type()) {
-        $title = get_theme_mod('breadcrumb_product_details', __('Shop', 'exdos'));
-    } elseif (is_search()) {
-        $title = esc_html__('Search Results for : ', 'exdos') . get_search_query();
-    } elseif (is_404()) {
-        $title = esc_html__('404 Page not Found', 'exdos');
-    } elseif (is_archive()) {
-        $title = get_the_archive_title();
-    } else {
-        $title = get_the_title();
-    }
-
+   if ( is_front_page() && is_home() ) {
+      $title = __('Blog','exdos');
+   }
+   elseif ( is_front_page() ) {
+         $title =  __('Blog','exdos');
+   }
+   elseif ( is_home() ) {
+      if ( get_option( 'page_for_posts' ) ) {
+         $title = get_the_title( get_option( 'page_for_posts') );
+      }
+   }
+   elseif ( is_single() && 'post' == get_post_type() ) {
+      $title = get_the_title();
+   } 
+   elseif ( is_single() && 'service' == get_post_type() ) {
+      $title = get_the_title();
+   } 
+   elseif ( is_single() && 'product' == get_post_type() ) {
+         $title = get_theme_mod( 'breadcrumb_product_details', __( 'Shop', 'exdos' ) );
+   } 
+   elseif ( is_search() ) {
+         $title = esc_html__( 'Search Results for : ', 'exdos' ) . get_search_query();
+   } 
+   elseif ( is_404() ) {
+         $title = esc_html__( '404 Page not Found', 'exdos' );
+   } 
+   elseif ( is_archive() ) {
+         $title = get_the_archive_title();
+   } 
+   else {
+         $title = get_the_title();
+   }
 
     $breadcrumb_img = get_theme_mod('breadcrumb_img');
-    $breadcrumb_img_page = function_exists('get_field') ? get_field('breadcrumb_image') : '';
 
-    if ($breadcrumb_img_page) {
-        $bg_img = $breadcrumb_img_page['url'];
-    } else {
-        $bg_img = $breadcrumb_img;
+    $breadcrumb_img_page = function_exists('get_field') ? get_field('breadcrumb_image') : '';  
+
+    if($breadcrumb_img_page){
+      $bg_img = $breadcrumb_img_page['url'];
+    }else{
+      $bg_img = $breadcrumb_img;
     }
 
-    $breadcrumb_onoff = function_exists('get_field') ? get_field('breadcrumb_onoff') : '';
-    // var_dump($breadcrumb_onoff);
+    $_id = get_the_ID();
+
+    if ( is_single() && 'product' == get_post_type() ) { 
+        $_id = $post->ID;
+    } 
+    elseif ( is_single() && 'service' == get_post_type() ) { 
+        $_id = $post->ID;
+    } 
+   //  elseif ( function_exists("is_shop") AND is_shop()  ) { 
+   //      $_id = wc_get_page_id('shop');
+   //  } 
+    elseif ( is_home() && get_option( 'page_for_posts' ) ) {
+      $_id = get_option( 'page_for_posts' );
+    }
+
+
+     $breacrumb_onoff = function_exists('get_field') ? get_field('breacrumb_onoff',$_id) : ''; 
 
     ?>
+
     <!-- beadcrumb area start -->
-    <?php if ($breadcrumb_onoff) : ?>
-        <div class="tp-breadcrumb__ptb tp-breadcrumb__bg p-relative z-index-1 fix" data-background="<?php echo esc_url($bg_img); ?>">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-sm-12">
-                        <div class="tp-breadcrumb__content p-relative">
-                            <h3 class="tp-breadcrumb__title white"><?php echo solub_kses($title); ?></h3>
-                            <?php if (function_exists('bcn_display')) : ?>
-                                <div class="tp-breadcrumb__list white">
-                                    <?php bcn_display(); ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    </div>
+     <?php if($breacrumb_onoff) : ?>
+    <div class="tp-breadcrumb__ptb tp-breadcrumb__bg p-relative z-index-1 fix" data-background="<?php echo esc_url($bg_img); ?>">
+       <div class="container">
+          <div class="row align-items-center">
+             <div class="col-sm-12">
+                <div class="tp-breadcrumb__content p-relative">
+                   <h3 class="tp-breadcrumb__title white"><?php echo solub_kses($title); ?></h3>
+                   <?php if(function_exists('bcn_display')) : ?>  
+                   <div class="tp-breadcrumb__list white">
+                        <?php bcn_display(); ?>
+                   </div>
+                   <?php endif; ?>
                 </div>
-            </div>
-        </div>
+             </div>
+          </div>
+       </div>
+    </div>
     <?php endif; ?>
     <!-- beadcrumb area end -->
+
 <?php
 }
 
 
-add_action('solub_before_content', 'solub_breadcrumb');
+add_action('solub_before_content','solub_breadcrumb');

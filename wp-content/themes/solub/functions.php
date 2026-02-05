@@ -64,6 +64,8 @@ if ( ! function_exists( 'solub_setup' ) ) :
 
 
         remove_theme_support( 'widgets-block-editor' );
+
+        add_theme_support('woocommerce');
     
     }
     endif; // solub_setup
@@ -85,10 +87,11 @@ if ( ! function_exists( 'solub_setup' ) ) :
             'after_title'   => '</h3>',
         ) );
 
+
         register_sidebar( array(
             'name'          => __( 'Services Sidebar', 'solub' ),
             'id'            => 'services-sidebar',
-            'description'   => __( 'This widgets will display in services sidebar', 'solub' ),
+            'description'   => __( 'This widgets will display in blog sidebar', 'solub' ),
             'before_widget' => '<div id="%1$s" class="tp-service-sidebar-content mb-40 %2$s">',
             'after_widget'  => '</div>',
             'before_title'  => '<h4 class="tp-service-sidebar-title">',
@@ -178,7 +181,9 @@ if ( ! function_exists( 'solub_setup' ) ) :
     require_once('inc/template-function.php');
     require_once('inc/nav-walker.php');
     require_once('inc/breadcrumb.php');
-
+if (class_exists('woocommerce')) {
+    require_once('inc/solub-woo.php');
+}
 
 /**
  * Generate custom search form
@@ -208,40 +213,39 @@ add_filter( 'get_search_form', 'solub_search_form' );
 
 
 
-// Action hook example
-
-// function text() {
-//     echo "<h1>Hello World 1</h1>";
+// function text(){
+//     echo "<h1>This is title 01</h1>";
 // }
-// add_action('demo', 'text', 5);
+// add_action('demo','text',3);
 
-// function text2() {
-//     echo "<h1>Hello World 2</h1>";
+
+// function text2(){
+//     echo "<h1>This is title 02</h1>";
 // }
-// add_action('demo', 'text2', 10);
+// add_action('demo','text2',4);
 
-// function text3() {
-//     echo "<h1>Hello World 3</h1>";
+
+// function text3(){
+//     echo "<h1>This is title 03</h1>";
 // }
-// add_action('demo', 'text3', 15);
+// add_action('demo','text3',1);
 
-// function text4() {
-//     echo "<h1>Hello World 4</h1>";
+
+// function text4(){
+//     echo "<h1>This is title 04</h1>";
 // }
-// add_action('demo', 'text4', 1);
+// add_action('demo','text4',3);
+
+// remove_action('demo','text3',1);
+// remove_action('demo','text4',3);
 
 
-// remove_action('demo', 'text3', 15);
-// remove_action('demo', 'text4' , 1);
-
-
-
-
-// // Filter example
-
-// function test_filter($tet){
-//     $test = '<h1>Hi Ostad</h1>';
+// function test_filter($test){
+//     $test = '<h1>Hello Ostad Filters</h1>';
 //     return $test;
 // }
-// add_filter('my_filter', 'test_filter');
-// remove_filter('my_filter', 'test_filter');
+
+// add_filter('my_filter','test_filter');
+
+
+// remove_filter('my_filter','test_filter');

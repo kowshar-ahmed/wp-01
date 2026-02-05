@@ -1,26 +1,26 @@
 <?php
 
-// solub_header
+// solub_header 
 function solub_header(){
 
-    $header_style = function_exists('get_field') ? get_field('header_style') : '';
+    $header_style = function_exists('get_field') ? get_field('header_style') : ''; 
+
+    $header_global = get_theme_mod('header_global', 'header-global-1');
 
     if($header_style == 'header_style_01'){
-        get_template_part('template-parts/header/header-1');
-    }
-    elseif($header_style == 'header_style_02'){
-        get_template_part('template-parts/header/header-2');
-    }
-    else{
-        get_template_part('template-parts/header/header-1');
-    }
+        get_template_part( 'template-parts/header/header-1' );
+    }elseif($header_style == 'header_style_02'){
+        get_template_part( 'template-parts/header/header-2' );
+    }else{
+        if($header_global == 'header-global-2'){
+            get_template_part( 'template-parts/header/header-2' );
+        }else{
+            get_template_part( 'template-parts/header/header-1' );
+        }
+    } 
 
-    // var_dump($header_style);
 }
-add_action('solub_before_content', 'solub_header');
-
-
-
+add_action('solub_before_content','solub_header');
 
 
 
@@ -40,8 +40,20 @@ function solub_header_logo(){
     $solub_logo_black = get_theme_mod('solub_logo_black', get_template_directory_uri().'/assets/img/logo/logo-black.png');
     ?>
 
-    <a href="<?php home_url(); ?>">
+    <a href="<?php echo esc_url(home_url('/')); ?>">
         <img data-width="130" src="<?php echo esc_url($solub_logo_black); ?>" alt="">
+    </a>
+    
+    <?php 
+}
+
+// solub_header_logo
+function solub_offcanvas_logo(){ 
+    $solub_logo_white = get_theme_mod('solub_logo_white', get_template_directory_uri().'/assets/img/logo/logo-white.png');
+    ?>
+
+    <a href="<?php echo esc_url(home_url('/')); ?>">
+        <img data-width="130" src="<?php echo esc_url($solub_logo_white); ?>" alt="">
     </a>
     
     <?php 
@@ -119,6 +131,7 @@ function solub_tags(){
 
 	$post_tags = get_the_tags();
 
+
     if ($post_tags) {
         foreach ($post_tags as $item) {
             ?>
@@ -132,17 +145,17 @@ function solub_tags(){
     }
 }
 
-// solub_pagination
-function solub_pagination() {
-    $pages = paginate_links( array(
-        'type'      => 'array',
-        'prev_text' => '<i class="fal fa-long-arrow-left"></i>',
-        'next_text' => '<i class="fal fa-long-arrow-right"></i>',
+// solub_pagination 
+function solub_pagination(){
+    $pages = paginate_links( array( 
+        'type' => 'array',
+        'prev_text'    => __('<i class="fal fa-long-arrow-left"></i>','harry'),
+        'next_text'    => __('<i class="fal fa-long-arrow-right"></i>','harry'),
     ) );
-    if ( $pages ) {
+        if( $pages ) {
         echo '<ul>';
         foreach ( $pages as $page ) {
-            echo '<li>' . $page . '</li>';
+            echo "<li>$page</li>";
         }
         echo '</ul>';
     }
@@ -150,15 +163,15 @@ function solub_pagination() {
 
 
 
+
 /**
- * Sanitize SVG markup for front-end display.
- *
- * @param  string $svg SVG markup to sanitize.
- * @return string 	  Sanitized markup.
- */
-function solub_kses($custom_html_tags = '')
-{
-    $allowed_html = [
+* Sanitize SVG markup for front-end display.
+*
+* @param  string $svg SVG markup to sanitize.
+* @return string 	  Sanitized markup.
+*/
+function solub_kses( $custom_html_tags = '' ) {
+	$allowed_html = [
         'svg' => array(
             'class' => true,
             'aria-hidden' => true,
@@ -169,93 +182,93 @@ function solub_kses($custom_html_tags = '')
             'height' => true,
             'viewbox' => true, // <= Must be lower case!
         ),
-        'path'  => array(
-            'd' => true,
-            'fill' => true,
-            'stroke' => true,
-            'stroke-width' => true,
-            'stroke-linecap' => true,
-            'stroke-linejoin' => true,
-            'opacity' => true,
+        'path'  => array( 
+            'd' => true, 
+            'fill' => true,  
+            'stroke' => true,  
+            'stroke-width' => true,  
+            'stroke-linecap' => true,  
+            'stroke-linejoin' => true,  
+            'opacity' => true,  
         ),
-        'a' => [
-            'class'    => [],
-            'href'    => [],
-            'title'    => [],
-            'target'    => [],
-            'rel'    => [],
-        ],
-        'b' => [],
-        'blockquote'  =>  [
+		'a' => [
+			'class'    => [],
+			'href'    => [],
+			'title'    => [],
+			'target'    => [],
+			'rel'    => [],
+		],
+         'b' => [],
+         'blockquote'  =>  [
             'cite' => [],
-        ],
-        'cite'                      => [
+         ],
+         'cite'                      => [
             'title' => [],
-        ],
-        'code'                      => [],
-        'del'                    => [
+         ],
+         'code'                      => [],
+         'del'                    => [
             'datetime'   => [],
             'title'      => [],
         ],
-        'dd'                     => [],
-        'div'                    => [
+         'dd'                     => [],
+         'div'                    => [
             'class'   => [],
             'title'   => [],
             'style'   => [],
-        ],
-        'dl'                     => [],
-        'dt'                     => [],
-        'em'                     => [],
-        'h1'                     => [],
-        'h2'                     => [],
-        'h3'                     => [],
-        'h4'                     => [],
-        'h5'                     => [],
-        'h6'                     => [],
-        'i'                         => [
+         ],
+         'dl'                     => [],
+         'dt'                     => [],
+         'em'                     => [],
+         'h1'                     => [],
+         'h2'                     => [],
+         'h3'                     => [],
+         'h4'                     => [],
+         'h5'                     => [],
+         'h6'                     => [],
+         'i'                         => [
             'class' => [],
-        ],
-        'img'                    => [
+         ],
+         'img'                    => [
             'alt'  => [],
             'class'   => [],
             'height' => [],
             'src'  => [],
             'width'   => [],
-        ],
-        'li'                     => array(
+         ],
+         'li'                     => array(
             'class' => array(),
-        ),
-        'ol'                     => array(
+         ),
+         'ol'                     => array(
             'class' => array(),
-        ),
-        'p'                         => array(
+         ),
+         'p'                         => array(
             'class' => array(),
-        ),
-        'q'                         => array(
+         ),
+         'q'                         => array(
             'cite'    => array(),
             'title'   => array(),
-        ),
-        'q'                         => array(
+         ),
+         'q'                         => array(
             'cite'    => array(),
             'title'   => array(),
-        ),
-        'span'                      => array(
+         ),
+         'span'                      => array(
             'class'   => array(),
             'title'   => array(),
             'style'   => array(),
-        ),
-        'iframe'                 => array(
+         ),
+         'iframe'                 => array(
             'width'         => array(),
             'height'     => array(),
             'scrolling'     => array(),
             'frameborder'   => array(),
             'allow'         => array(),
             'src'        => array(),
-        ),
-        'strike'                 => array(),
-        'br'                     => array(),
-        'strong'                 => array(),
-    ];
+         ),
+         'strike'                 => array(),
+         'br'                     => array(),
+         'strong'                 => array(),
+	];
 
-    return wp_kses($custom_html_tags, $allowed_html);
+	return wp_kses( $custom_html_tags, $allowed_html );
 }

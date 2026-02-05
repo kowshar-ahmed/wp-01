@@ -11,7 +11,6 @@
 
 
 
-
       <!-- header area start -->
       <header class="tp-header-4-ptb">
         <?php if($header_top_switch) : ?>

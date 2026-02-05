@@ -509,6 +509,55 @@
 				}
 			});
 		}
-		smoothSctoll();	
+	smoothSctoll();	
+	
+
+
+	
+
+		// tp_ecommerce
+	function tp_ecommerce() {
+	$('.tp-cart-minus').on('click', function () {
+		var $input = $(this).parent().find('input');
+		var count = parseInt($input.val()) - 1;
+		count = count < 1 ? 1 : count;
+		$input.val(count);
+		$input.change();
+		return false;
+	});
+	
+	$('.tp-cart-plus').on('click', function () {
+		var $input = $(this).parent().find('input');
+		$input.val(parseInt($input.val()) + 1);
+		$input.change();
+		return false;
+	});
+	
+		//  tpReturnCustomerLoginForm //
+		$('.tp-checkout-login-form-reveal-btn').on('click', function () {
+		$('#tpReturnCustomerLoginForm').slideToggle(400);
+		});
+	
+	
+		//  Show Coupon Toggle Js //
+		$('.tp-checkout-coupon-form-reveal-btn').on('click', function () {
+			$('#tpCheckoutCouponForm').slideToggle(400);
+		});
+		
+	
+		// Create An Account Toggle Js //
+		$('#cbox').on('click', function () {
+			$('#cbox_info').slideToggle(900);
+		});
+		
+		// Shipping Box Toggle Js //
+		$('#ship-box').on('click', function () {
+			$('#ship-box-info').slideToggle(1000);
+		});
+	}
+	tp_ecommerce();
+
+
+
 
 })(jQuery);
