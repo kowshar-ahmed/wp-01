@@ -77,3 +77,8 @@ body .tp-step-item-thumb img {
 .tp-product-add-cart-btn-large.added{
 	display: none;
 }
+
+.woocommerce div.product div.images, .woocommerce #content div.product div.images, .woocommerce-page div.product div.images, .woocommerce-page #content div.product div.images {
+    float: none;
+    width: auto;
+}

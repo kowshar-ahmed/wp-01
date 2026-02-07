@@ -17,6 +17,18 @@ remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_lo
 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5);
 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
 
+//product single
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5);
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10);
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50);
+remove_action('woocommerce_single_product_summary', 'WC_Structured_Data::generate_product_data', 60);
+
+
+
 
 //widhlist return false
 add_filter('woosw_button_position_archive', '__return_false');
@@ -28,6 +40,9 @@ add_filter('woosq_button_position', '__return_false');
 //compare return false
 add_filter('woosc_button_position_archive', '__return_false');
 add_filter('woosc_button_position_single', '__return_false');
+
+
+
 
 
 
@@ -96,6 +111,9 @@ function solub_wooc_add_to_cart($args = array())
 
 
 
+
+
+//solub_product
 function solub_product()
 {
     global $product;
@@ -171,8 +189,110 @@ function solub_product()
         </div>
     </div>
 
-
 <?php
 }
 
 add_action('woocommerce_before_shop_loop_item', 'solub_product');
+
+
+
+
+
+
+
+
+
+function solub_product_details()
+{
+    global $product;
+    $pro_cat = get_the_terms(get_the_ID(), 'product_cat');
+    // var_dump($product);
+
+?>
+    <div class="tp-product-details-wrapper pb-50">
+        <div class="tp-product-details-category">
+            <?php
+            $html = '';
+            foreach ($pro_cat as $key => $cat) {
+
+                $html .= '<span><a href="' . get_category_link($cat->term_id) . '">' . $cat->name . '</a></span>,';
+                if ($key == 1) break;
+            }
+            echo rtrim($html, ',');
+
+            ?>
+
+        </div>
+        <h3 class="tp-product-details-title mb-20"><?php echo esc_html($product->get_name()); ?></h3>
+
+        <p><?php echo esc_html($product->get_stock_status()); ?></p>
+        </span><?php echo esc_html($product->get_stock_quantity()); ?></span>
+
+        <!-- inventory details -->
+        <div class="tp-product-details-inventory mb-25 d-flex align-items-center justify-content-between">
+            <!-- price -->
+            <div class="tp-product-details-price-wrapper">
+                <span class="tp-product-details-price"><?php echo $product->get_price_html(); ?></span>
+                <div class="tp-product-details-rating-wrapper d-flex align-items-center">
+                    <div class="tp-product-details-rating">
+                        <span><i class="fas fa-star"></i></span>
+                        <span><i class="fas fa-star"></i></span>
+                        <span><i class="fas fa-star"></i></span>
+                        <span><i class="fas fa-star"></i></span>
+                        <span><i class="fas fa-star"></i></span>
+                    </div>
+                    <div class="tp-product-details-reviews">
+                        <span>(36 Reviews)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p><?php echo esc_html($product->get_short_description()); ?></p>
+
+
+        <!-- actions -->
+        <div class="tp-product-details-action-wrapper mb-10">
+            <h3 class="tp-product-details-action-title">Quantity</h3>
+            <div class="tp-product-details-action-item-wrapper d-flex flex-wrap align-items-center">
+                <div class="tp-product-details-quantity">
+                    <div class="tp-product-quantity mb-15 mr-15">
+                        <span class="tp-cart-minus">
+                            <svg width="11" height="2" viewBox="0 0 11 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <input class="tp-cart-input" type="text" value="1">
+                        <span class="tp-cart-plus">
+                            <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 6H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M5.5 10.5V1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="tp-product-details-add-to-cart mb-15 mr-10">
+                    <button class="tp-product-details-add-to-cart-btn w-100">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tp-product-details-query">
+            <div class="tp-product-details-query-item d-flex align-items-center">
+                <span>SKU: </span>
+                <p>NTB7SDVX44</p>
+            </div>
+            <div class="tp-product-details-query-item d-flex align-items-center">
+                <span>Category: </span>
+                <p>Computers & Tablets</p>
+            </div>
+            <div class="tp-product-details-query-item d-flex align-items-center">
+                <span>Tag: </span>
+                <p>Android</p>
+            </div>
+        </div>
+    </div>
+<?php
+
+}
+
+add_action('woocommerce_single_product_summary', 'solub_product_details');
