@@ -223,31 +223,22 @@ function solub_product_details()
             ?>
 
         </div>
-        <h3 class="tp-product-details-title mb-20"><?php echo esc_html($product->get_name()); ?></h3>
+        <h3 class="tp-product-details-title mb-20"><?php the_title(); ?></h3>
 
-        <p><?php echo esc_html($product->get_stock_status()); ?></p>
-        </span><?php echo esc_html($product->get_stock_quantity()); ?></span>
+        <p class="d-none"><?php //echo esc_html($product->get_stock_status()); 
+                            ?></p>
+        </span><?php //echo esc_html($product->get_stock_quantity()); 
+                ?></span>
 
         <!-- inventory details -->
         <div class="tp-product-details-inventory mb-25 d-flex align-items-center justify-content-between">
             <!-- price -->
             <div class="tp-product-details-price-wrapper">
-                <span class="tp-product-details-price"><?php echo $product->get_price_html(); ?></span>
-                <div class="tp-product-details-rating-wrapper d-flex align-items-center">
-                    <div class="tp-product-details-rating">
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                    </div>
-                    <div class="tp-product-details-reviews">
-                        <span>(36 Reviews)</span>
-                    </div>
-                </div>
+                <?php woocommerce_template_single_price(); ?>
+                <?php woocommerce_template_single_rating(); ?>
             </div>
         </div>
-        <p><?php echo esc_html($product->get_short_description()); ?></p>
+        <p><?php woocommerce_template_single_excerpt(); ?></p>
 
 
         <!-- actions -->
@@ -279,7 +270,7 @@ function solub_product_details()
         <div class="tp-product-details-query">
             <div class="tp-product-details-query-item d-flex align-items-center">
                 <span>SKU: </span>
-                <p>NTB7SDVX44</p>
+                <p><?php echo esc_html($product->get_sku()); ?></p>
             </div>
             <div class="tp-product-details-query-item d-flex align-items-center">
                 <span>Category: </span>

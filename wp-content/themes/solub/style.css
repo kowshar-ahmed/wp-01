@@ -82,3 +82,11 @@ body .tp-step-item-thumb img {
     float: none;
     width: auto;
 }
+
+.woocommerce .star-rating span {
+    color: #FFB21D;
+}
+
+.woocommerce div.product .woocommerce-product-rating {
+    margin-bottom: 0;
+}
