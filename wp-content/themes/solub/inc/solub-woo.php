@@ -278,7 +278,7 @@ function solub_product_details()
             </div>
             <div class="tp-product-details-query-item d-flex align-items-center">
                 <span>Tag: </span>
-                <p>Android</p>
+                <p>Android Hi</p>
             </div>
         </div>
     </div>
