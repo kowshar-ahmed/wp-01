@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Single Product Meta
  *
@@ -17,26 +18,51 @@
 
 use Automattic\WooCommerce\Enums\ProductType;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit;
 }
 
 global $product;
+$pro_cat = get_the_terms(get_the_ID(), 'product_cat');
+$post_tags = get_the_terms(get_the_ID(), 'product_tag');
 ?>
-<div class="product_meta">
 
-	<?php do_action( 'woocommerce_product_meta_start' ); ?>
 
-	<?php if ( wc_product_sku_enabled() && ( $product->get_sku() || $product->is_type( ProductType::VARIABLE ) ) ) : ?>
+<div class="tp-product-details-query">
+	<div class="tp-product-details-query-item d-flex align-items-center">
+		<span>SKU: </span>
+		<p><?php echo esc_html($product->get_sku()); ?></p>
+	</div>
+	<div class="tp-product-details-query-item d-flex align-items-center">
+		<span>Category: </span>
+		<p>
+			<?php
+			$html = '';
+			foreach ($pro_cat as $key => $cat) {
 
-		<span class="sku_wrapper"><?php esc_html_e( 'SKU:', 'woocommerce' ); ?> <span class="sku"><?php echo ( $sku = $product->get_sku() ) ? $sku : esc_html__( 'N/A', 'woocommerce' ); ?></span></span>
+				$html .= '<span><a href="' . get_category_link($cat->term_id) . '">' . $cat->name . '</a></span>,';
+			}
+			echo rtrim($html, ',');
 
+			?>
+		</p>
+	</div>
+	<?php if ($post_tags) : ?>
+	<div class="tp-product-details-query-item d-flex align-items-center">
+		<span>Tag: </span>
+		<p>
+			<?php
+			$html = '';
+			foreach ($post_tags as $key => $tag) {
+
+				$html .= '<span><a href="' . get_term_link($tag->term_id) . '">' . $tag->name . '</a></span>,';
+			}
+			echo rtrim($html, ',');
+
+			?>
+		</p>
+	</div>
 	<?php endif; ?>
-
-	<?php echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="posted_in">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
-
-	<?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<span class="tagged_as">' . _n( 'Tag:', 'Tags:', count( $product->get_tag_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
-
-	<?php do_action( 'woocommerce_product_meta_end' ); ?>
-
 </div>
+
+

@@ -246,41 +246,18 @@ function solub_product_details()
             <h3 class="tp-product-details-action-title">Quantity</h3>
             <div class="tp-product-details-action-item-wrapper d-flex flex-wrap align-items-center">
                 <div class="tp-product-details-quantity">
-                    <div class="tp-product-quantity mb-15 mr-15">
-                        <span class="tp-cart-minus">
-                            <svg width="11" height="2" viewBox="0 0 11 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </span>
-                        <input class="tp-cart-input" type="text" value="1">
-                        <span class="tp-cart-plus">
-                            <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 6H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M5.5 10.5V1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </span>
-                    </div>
+
+                    <?php woocommerce_template_single_add_to_cart(); ?>
+
+                    
                 </div>
-                <div class="tp-product-details-add-to-cart mb-15 mr-10">
+                <div class="tp-product-details-add-to-cart mb-15 mr-10 d-none">
                     <button class="tp-product-details-add-to-cart-btn w-100">Add To Cart</button>
                 </div>
             </div>
         </div>
 
-        <div class="tp-product-details-query">
-            <div class="tp-product-details-query-item d-flex align-items-center">
-                <span>SKU: </span>
-                <p><?php echo esc_html($product->get_sku()); ?></p>
-            </div>
-            <div class="tp-product-details-query-item d-flex align-items-center">
-                <span>Category: </span>
-                <p>Computers & Tablets</p>
-            </div>
-            <div class="tp-product-details-query-item d-flex align-items-center">
-                <span>Tag: </span>
-                <p>Android Hi</p>
-            </div>
-        </div>
+        <?php woocommerce_template_single_meta(); ?>
     </div>
 <?php
 
