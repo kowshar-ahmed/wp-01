@@ -62,6 +62,9 @@ if ( ! function_exists( 'solub_setup' ) ) :
             'image', 'video', 'gallery', 'audio',
         ) );
 
+        add_theme_support('wc-product-gallery-lightbox');
+        add_theme_support('wc-product-gallery-slider');
+
 
         remove_theme_support( 'widgets-block-editor' );
 
