@@ -121,3 +121,48 @@ strong.woocommerce-review__author {
 span.woocommerce-review__dash {
     display: none;
 }
+
+#review_form input, #review_form textarea {
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    height: 60px;
+    background-color: #EBF3ED;
+    border: 1.5px solid #EBF3ED;
+    color: var(--tp-common-black);
+    letter-spacing: 0.02em;
+}
+
+p.comment-form-author {
+    width: 50%;
+    float: left;
+}
+
+p.comment-form-email {
+    width: 50%;
+    float: right;
+    padding-left: 10px;
+}
+
+p.comment-form-cookies-consent {
+    clear: both;
+}
+
+input#wp-comment-cookies-consent {
+    height: auto;
+}
+
+.woocommerce #review_form #respond .form-submit input {
+    position: relative;
+    overflow: hidden;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 18px 40px 18px;
+    color: var(--tp-common-white);
+    font-family: var(--tp-ff-heading);
+    background-color: var(--tp-theme-primary);
+    -webkit-transition: 500ms all ease;
+    transition: 500ms all ease;
+}
