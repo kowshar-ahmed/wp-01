@@ -245,7 +245,7 @@ function solub_product_details()
         <div class="tp-product-details-action-wrapper mb-10">
             <h3 class="tp-product-details-action-title">Quantity</h3>
             <div class="tp-product-details-action-item-wrapper d-flex flex-wrap align-items-center">
-                <div class="tp-product-details-quantity">
+                <div class="tp-product-add-to-cart-main">
 
                     <?php woocommerce_template_single_add_to_cart(); ?>
 
