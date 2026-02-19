@@ -166,3 +166,8 @@ input#wp-comment-cookies-consent {
     -webkit-transition: 500ms all ease;
     transition: 500ms all ease;
 }
+
+.woocommerce ul.order_details {
+    padding: 30px;
+    border: 2px dashed green;
+}
