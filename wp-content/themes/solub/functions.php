@@ -184,6 +184,8 @@ if ( ! function_exists( 'solub_setup' ) ) :
     require_once('inc/template-function.php');
     require_once('inc/nav-walker.php');
     require_once('inc/breadcrumb.php');
+    require_once('inc/add_plugin.php');
+    require_once('inc/class-tgm-plugin-activation.php');
 if (class_exists('woocommerce')) {
     require_once('inc/solub-woo.php');
 }
