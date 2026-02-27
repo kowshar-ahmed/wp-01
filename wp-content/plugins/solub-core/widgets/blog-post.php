@@ -281,7 +281,7 @@ class Solub_Blog_Post extends Widget_Base
 
 
 
-		<section class="tp-blog-ptb p-relative pt-140 pb-110" data-bg-color="#EBF3ED">
+		<section class="tp-blog-ptb p-relative">
 			<div class="container">
 				<div class="row">
 					<?php if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();

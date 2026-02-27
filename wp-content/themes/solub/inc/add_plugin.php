@@ -23,7 +23,7 @@ function solub_register_required_plugins() {
      * If the source is NOT from the .org repo, then source is also required.
      */
 
-    $url = 'https://storebuild.shop/wp/solub-ostad/source/';
+    $url = 'https://storebuild.shop/wp/venturestore/source/';
     $plugins = [
 
         [
@@ -91,6 +91,11 @@ function solub_register_required_plugins() {
         [
             'name'     => esc_html__( 'One Click Demo Import', 'exdos' ),
             'slug'     => 'one-click-demo-import',
+            'required' => true,
+        ],
+        [
+            'name'     => esc_html__('MC4WP', 'exdos' ),
+            'slug'     => 'mailchimp-for-wp',
             'required' => true,
         ],
 
