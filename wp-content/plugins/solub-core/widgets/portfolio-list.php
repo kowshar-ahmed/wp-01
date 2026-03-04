@@ -112,7 +112,7 @@ class Solub_Portfolio_List extends Widget_Base
 	// Title and Content Section
 	protected function register_controls_section()
 	{
-		
+
 		$this->start_controls_section(
 			'item_section',
 			[

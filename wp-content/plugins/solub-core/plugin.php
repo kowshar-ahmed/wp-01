@@ -110,6 +110,7 @@ class Plugin
 	public function register_widgets($widgets_manager)
 	{
 		// Its is now safe to include Widgets files
+		require_once(__DIR__ . '/widgets/trait-heading.php');
 		require_once(__DIR__ . '/widgets/blog-post.php');
 		require_once(__DIR__ . '/widgets/portfolio-post.php');
 		require_once(__DIR__ . '/widgets/hero.php');
@@ -126,6 +127,7 @@ class Plugin
 		require_once(__DIR__ . '/widgets/team-box.php');
 		require_once(__DIR__ . '/widgets/step.php');
 		require_once(__DIR__ . '/widgets/contact-form.php');
+		require_once(__DIR__ . '/widgets/product-post.php');
 
 
 
